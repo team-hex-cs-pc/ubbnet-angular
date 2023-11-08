@@ -1,0 +1,24 @@
+<div class="app-container">
+  <div *ngFor="let post of posts" class="post">
+    <div class="post-header">
+      <div class="user-info">
+        <span class="post-date">USERNAME posted <br> {{ formatPublicationDate(post.publicationDate) }}</span> <br>
+      </div>
+    </div>
+    <div class="post-content">
+      <h2> Title: {{ post.title }}</h2>
+      <p> Category: {{ post.category }}</p>
+      <p> Content: {{ post.content }}</p>
+    </div>
+    <div class="post-footer">
+      <div class="post-content-footer">
+        <div class="likes">
+          <span class="like-icon">&#x2764;</span> {{ post.likes }}
+        </div>
+        <div class="like-button">
+          <button (click)="likePost(post)">Like</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

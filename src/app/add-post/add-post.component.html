@@ -1,0 +1,22 @@
+<div class="app-container2">
+  <h2>Add a Post</h2>
+  <form class="needs-validation custom-form" novalidate>
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" class="form-control" [(ngModel)]="post.title" required>
+    </div>
+
+    <div class="form-group">
+      <label for="content">Content:</label>
+      <input type="text" id="content" name="content" class="form-control" [(ngModel)]="post.content" required>
+    </div>
+
+    <div class="form-group">
+      <label for="category">Category:</label>
+      <input type="text" id="category" name="category" class="form-control" [(ngModel)]="post.category" required>
+    </div>
+  </form>
+
+  <button type="submit" class="btn btn-primary custom-button" (click)="onSubmit()">Post</button>
+
+</div>
