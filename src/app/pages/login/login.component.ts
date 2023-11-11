@@ -1,12 +1,5 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  FormGroupDirective,
-  NgForm,
-  Validators,
-} from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
@@ -17,12 +10,21 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class LoginComponent {
   constructor(private userService: UserService, private router: Router) {}
+  errorAfterLogin: string = '';
 
-  login(username: string, password: string): void {
-    this.userService.login(username, password).subscribe(
-      (response) => {
-        if(response.s)
-      }
-    );
+  async login(username: string, password: string) {
+    await this.userService
+      .login(username, password)
+      .then((res) => {
+        if (res) {
+          this.errorAfterLogin = '';
+          localStorage.setItem('token', res.token);
+        } else {
+          this.errorAfterLogin = 'Invalid username or password';
+        }
+      })
+      .catch((err: HttpErrorResponse) => {
+        this.errorAfterLogin = 'Invalid username or password';
+      });
   }
 }

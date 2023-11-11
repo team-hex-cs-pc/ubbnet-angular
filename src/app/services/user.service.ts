@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, lastValueFrom } from 'rxjs';
+import { AuthResponse } from '../models/AuthResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -19,11 +20,15 @@ export class UserService {
     this.isLoggedIn = false;
     this.httpClient = http;
   }
-  login(email: string, password: string) {
-    const res = this.httpClient.post('localhost:8080/user/login', {
-      email,
-      password,
-    });
-    return res;
+  async login(email: string, password: string): Promise<AuthResponse> {
+    const res = this.httpClient.post<AuthResponse>(
+      'http://localhost:8080/user/login',
+      {
+        email,
+        password,
+      },
+      this.header
+    );
+    return lastValueFrom(res);
   }
 }
