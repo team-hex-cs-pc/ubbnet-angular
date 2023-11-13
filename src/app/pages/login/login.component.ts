@@ -13,18 +13,20 @@ export class LoginComponent {
   errorAfterLogin: string = '';
 
   async login(username: string, password: string) {
-    await this.userService
-      .login(username, password)
-      .then((res) => {
-        if (res) {
-          this.errorAfterLogin = '';
-          localStorage.setItem('token', res.token);
-        } else {
-          this.errorAfterLogin = 'Invalid username or password';
-        }
-      })
-      .catch((err: HttpErrorResponse) => {
+    try {
+      const res = await this.userService.login(username, password);
+      if (res) {
+        this.errorAfterLogin = '';
+        localStorage.setItem('token', res.token);
+        await this.userService.getUserInformation();
+        this.userService.user$.subscribe((user) => {
+          console.log(user);
+        });
+      } else {
         this.errorAfterLogin = 'Invalid username or password';
-      });
+      }
+    } catch (err: unknown) {
+      this.errorAfterLogin = 'Invalid username or password';
+    }
   }
 }
