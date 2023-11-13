@@ -1,24 +1,28 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {lastValueFrom} from 'rxjs';
 import {Post} from "../post.model";
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class PostService {
-    private postsUrl = 'http://localhost:8080/post';
+  private postsUrl = 'http://localhost:8080/post';
 
-    constructor(private http: HttpClient) {
-    }
+  constructor(private http: HttpClient) {
+  }
 
-    getPosts(): Observable<any[]> {
-        const url = `${this.postsUrl}/all`;
-        return this.http.get<any[]>(url);
-    }
+  getPosts(): Promise<any[]> {
+    const url = `${this.postsUrl}/all`;
+    return lastValueFrom(this.http.get<any[]>(url));
+  }
 
-    addPost(post: Post): Observable<Post> {
-        const url = `${this.postsUrl}/add`;
-        return this.http.post<Post>(url, post);
+  async addPost(post: Post): Promise<Post> {
+    const url = `${this.postsUrl}/add`;
+    try {
+      return await lastValueFrom(this.http.post<Post>(url, post));
+    } catch (error) {
+      throw error;
     }
+  }
 }

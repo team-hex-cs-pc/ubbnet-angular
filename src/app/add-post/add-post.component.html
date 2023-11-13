@@ -1,22 +1,23 @@
 <div class="app-container2">
-  <h2>Add a Post</h2>
+  <h2>What's on you mind?</h2>
   <form class="needs-validation custom-form" novalidate>
-    <div class="form-group">
-      <label for="title">Title:</label>
-      <input type="text" id="title" name="title" class="form-control" [(ngModel)]="post.title" required>
-    </div>
+    <mat-form-field class="form-group">
+      <mat-label>Title:</mat-label>
+      <input matInput id="title" name="title" [(ngModel)]="post.title" required>
+    </mat-form-field>
 
-    <div class="form-group">
-      <label for="content">Content:</label>
-      <input type="text" id="content" name="content" class="form-control" [(ngModel)]="post.content" required>
-    </div>
+    <mat-form-field class="form-group">
+      <mat-label>Content:</mat-label>
+      <input matInput id="content" name="content" [(ngModel)]="post.content" required>
+    </mat-form-field>
 
-    <div class="form-group">
-      <label for="category">Category:</label>
-      <input type="text" id="category" name="category" class="form-control" [(ngModel)]="post.category" required>
+    <mat-form-field class="form-group">
+      <mat-label>Category:</mat-label>
+      <input matInput id="category" name="category" [(ngModel)]="post.category" required>
+    </mat-form-field>
+
+    <div class="button-container">
+      <button mat-button color="primary" class="custom-button" (click)="onSubmit()">Submit</button>
     </div>
   </form>
-
-  <button type="submit" class="btn btn-primary custom-button" (click)="onSubmit()">Post</button>
-
 </div>

@@ -16,23 +16,23 @@ export class AddPostComponent {
 
   async onSubmit() {
     this.post.publicationDate = new Date().toISOString();
-    this.postService.addPost(this.post).subscribe(
-      (response: Post) => {
-        // Handle the success response here
-        console.log('Post added successfully', response);
 
-        // Redirect to the "All Posts" page
-        this.router.navigate(['/posts']);
-      },
-      (error) => {
-        // Handle the error here
-        console.error('Error while adding post', error);
+    try {
+      const response = await this.postService.addPost(this.post);
+      // Handle the success response here
+      console.log('Post added successfully', response);
 
-        // Redirect to the "All Posts" page
-        this.router.navigate(['/posts']);
-      }
-    );
+      // Redirect to the "All Posts" page
+      this.router.navigate(['/posts']);
+    } catch (error) {
+      // Handle the error here
+      console.error('Error while adding post', error);
+
+      // Redirect to the "All Posts" page
+      this.router.navigate(['/posts']);
+    }
   }
+
 
   async likePost(post: Post) {
 
