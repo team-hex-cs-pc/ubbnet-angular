@@ -1,0 +1,50 @@
+:host {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  align-items: center;
+}
+
+.my-form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.loginButton {
+  padding: 10px;
+  font-family: "Roboto", sans-serif;
+  border: none;
+  background-color: paleturquoise;
+  border-radius: 10px;
+  width: 100px;
+  cursor: pointer;
+}
+
+.my-card {
+  width: 40%;
+}
+
+mat-card {
+  max-width: 600px;
+
+  mat-card-title,
+  mat-card-content {
+    display: flex;
+    justify-content: center;
+
+    form {
+      .mat-form-field {
+        min-width: 300px;
+      }
+
+      .error {
+        padding: 16px;
+        width: 300px;
+        color: white;
+        background-color: red;
+      }
+    }
+  }
+}

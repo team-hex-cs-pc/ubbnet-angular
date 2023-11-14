@@ -1,8 +1,11 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
+
+import {AppComponent} from './app.component';
+import {LoginComponent} from './pages/login/login.component';
+import {MaterialModule} from './material.module';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
 import {UserListComponent} from './user-list/user-list.component';
 import {FormsModule} from "@angular/forms";
 import {PostListComponent} from './post-list/post-list.component';
@@ -24,24 +27,24 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     PostListComponent,
     AddPostComponent,
     ProfileComponent,
-    TimeAgoPipe
+    TimeAgoPipe,
+    LoginComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
     FormsModule,
     BrowserModule,
-    BrowserAnimationsModule,
     MatButtonModule,
     MatInputModule,
     MatCardModule,
     MatIconModule,
     MatToolbarModule,
     MatListModule,
+    AppRoutingModule,
+    MaterialModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
