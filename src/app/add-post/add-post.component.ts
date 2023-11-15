@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Post} from "../post.model";
 import {Router} from "@angular/router";
 import {PostService} from "../services/post.service";
+import {UserService} from "../services/user.service";
 
 @Component({
   selector: 'app-add-post',
@@ -9,29 +10,39 @@ import {PostService} from "../services/post.service";
   styleUrls: ['./add-post.component.scss']
 })
 export class AddPostComponent {
-  post: Post = {title: "", content: "", category: "", likes: 0, publicationDate: ""}
+  post: Post = {title: "", content: "", category: "", likes: 0, publicationDate: "", username: ""}
 
-  constructor(private postService: PostService, private router: Router) {
+  constructor(private postService: PostService, private userService: UserService, private router: Router) {
   }
 
   async onSubmit() {
     this.post.publicationDate = new Date().toISOString();
 
     try {
-      const response = await this.postService.addPost(this.post);
-      // Handle the success response here
-      console.log('Post added successfully', response);
+      const email = localStorage.getItem('email');
+      if (email) {
+        this.post.username = await this.userService.getUsernameByEmail(email);
+        const response = await this.postService.addPost(this.post);
+        // Handle the success response here
+        console.log('Post added successfully', response);
 
-      // Redirect to the "All Posts" page
-      this.router.navigate(['/posts']);
+        // Redirect to the "All Posts" page
+        await this.router.navigate(['/posts']);
+      } else {
+        // Handle the case when email is null
+        console.error('Email not found in localStorage');
+        // Redirect to the "All Posts" page
+        await this.router.navigate(['/posts']);
+      }
     } catch (error) {
-      // Handle the error here
+      // Handle other errors here
       console.error('Error while adding post', error);
 
       // Redirect to the "All Posts" page
-      this.router.navigate(['/posts']);
+      await this.router.navigate(['/posts']);
     }
   }
+
 
   async likePost(post: Post) {
   }

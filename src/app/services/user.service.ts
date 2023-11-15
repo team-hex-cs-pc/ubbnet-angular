@@ -5,7 +5,6 @@ import {User} from "../user.model";
 import { AuthResponse } from '../models/AuthResponse';
 import {throwError} from "rxjs/internal/observable/throwError";
 import {catchError} from "rxjs/internal/operators/catchError";
-import {tap} from "rxjs/internal/operators/tap";
 import {Router} from "@angular/router";
 
 @Injectable({
@@ -76,6 +75,7 @@ export class UserService {
 
   logout() {
     localStorage.removeItem('token'); // Clear token from local storage or any other stored user data
+    localStorage.removeItem('email');
     this.setLoggedIn(false); // Update the loggedInStatus
     UserService._user.next(null); // Clear the user data BehaviorSubject or any user-related data
 
@@ -94,4 +94,11 @@ export class UserService {
         UserService._user.next(user);
       });
   }
+
+  getUsernameByEmail(email: string): Promise<string> {
+    const url = `${this.usersUrl}/username/${email}`;
+    console.log(lastValueFrom(this.http.get(url, { headers: this.header.headers, responseType: 'text' })));
+    return lastValueFrom(this.http.get(url, { headers: this.header.headers, responseType: 'text' }));
+  }
+
 }

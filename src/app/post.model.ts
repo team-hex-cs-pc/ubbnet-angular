@@ -4,4 +4,5 @@ export interface Post {
     category: string;
     likes: number;
     publicationDate: string;
+    username: string;
 }

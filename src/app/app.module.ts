@@ -19,6 +19,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {CommonModule} from "@angular/common";
+import {MatLegacyListModule} from "@angular/material/legacy-list";
+import {MatLineModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -29,23 +31,23 @@ import {CommonModule} from "@angular/common";
     TimeAgoPipe,
     LoginComponent
   ],
-  imports: [
-    FormsModule,
-    BrowserModule,
-    MatButtonModule,
-    MatInputModule,
-    MatCardModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatListModule,
-    AppRoutingModule,
-    MaterialModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    CommonModule,
-    ReactiveFormsModule,
-    FormsModule
-  ],
+    imports: [
+        BrowserModule,
+        MatButtonModule,
+        MatInputModule,
+        MatToolbarModule,
+        AppRoutingModule,
+        MaterialModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        MatIconModule,
+        MatCardModule,
+        MatListModule,
+        MatLineModule
+    ],
   providers: [],
   bootstrap: [AppComponent],
 })
