@@ -1,4 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+.app-container {
+  margin: 10vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.app-container2 {
+  margin: 100px 100px 100px 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+h1 {
+  text-align: center; /* Optional: Center the text within the h1 element */
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

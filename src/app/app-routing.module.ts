@@ -1,21 +1,49 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './pages/login/login.component';
+import {LoginComponent} from './pages/login/login.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {UserListComponent} from "./user-list/user-list.component";
+import {PostListComponent} from "./post-list/post-list.component";
+import {AddPostComponent} from "./add-post/add-post.component";
+import {AuthGuard} from "./services/AuthGuard";
 import { ProfileComponent } from './pages/profile/profile.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: LoginComponent
+  },
   {
     path: 'login',
     component: LoginComponent,
   },
   {
+    path: 'users',
+    component: UserListComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'posts',
+    component: PostListComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'add-post',
+    component: AddPostComponent,
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'profile/:username',
     component: ProfileComponent,
+    canActivate: [AuthGuard]
   },
 ];
 
+
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes)
+  ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

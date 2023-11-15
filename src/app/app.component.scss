@@ -1,0 +1,39 @@
+.nav-items {
+  width: 100%;
+}
+
+.app-name {
+  font-family: sans-serif;
+  font-size: 30px;
+  text-shadow: 2px 2px 4px rgba(239, 239, 239, 0.4); /* Add a shadow with offset, blur, and color */
+  color: #333;
+}
+
+mat-toolbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.mat-toolbar .nav-items {
+  align-items: center;
+}
+
+.mat-toolbar mat-nav-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.mat-toolbar a.mat-list-item {
+  text-decoration: none;
+  color: #fff; /* Adjust color */
+  padding: 8px 12px; /* Adjust padding */
+  border-radius: 4px; /* Add border-radius if needed */
+  transition: background-color 0.3s ease; /* Add transitions */
+}
+
+.mat-toolbar a.mat-list-item:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Adjust hover color */
+}

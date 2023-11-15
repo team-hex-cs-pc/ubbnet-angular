@@ -1,0 +1,30 @@
+.form-group {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.form-group label {
+  flex: 1;
+  margin-right: 10px; /* Add margin for spacing */
+}
+
+.custom-button {
+  border: 2px solid #7b39a1; /* Border style and color */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Box shadow */
+  color: #fff; /* Text color */
+  background-color: rgba(168, 162, 225, 0.74); /* Background color */
+  transition: background-color 0.3s; /* Smooth transition on hover */
+}
+
+.custom-button:hover {
+  background-color: rgb(168, 162, 225); /* New background color on hover */
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px; /* Add margin for spacing */
+}
