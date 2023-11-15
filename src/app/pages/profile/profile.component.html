@@ -4,7 +4,9 @@
 </mat-toolbar>
 <div>
   <mat-card class="profile-card">
-    <div class="coverImageSection"></div>
+    <div class="coverImageSection">
+      <button class="addCoverImageButton">Add cover image</button>
+    </div>
     <mat-card-header>
       <div mat-card-avatar class="profile-picture">
         <mat-icon
@@ -16,7 +18,7 @@
           >account_circle</mat-icon
         >
       </div>
-      <div style="display: flex; align-items: end">
+      <div style="display: flex; align-items: end; margin-left: 20px">
         <mat-card-title *ngIf="user !== null">{{
           user.firstName + " " + user.lastName
         }}</mat-card-title>
@@ -27,6 +29,14 @@
     <div class="leftArea"></div>
     <div class="postsArea">
       <h2 style="display: flex">Recent posts</h2>
+      <mat-form-field
+        class="example-full-width"
+        style="width: 42vw; height: 200px"
+      >
+        <mat-label>What's on your mind?</mat-label>
+        <input matInput placeholder="Ex. Pizza" value="" />
+      </mat-form-field>
+      <button class="addPostButton">Post</button>
       <div *ngFor="let post of posts">
         <mat-card-content class="postCard">
           <div class="d-flex">

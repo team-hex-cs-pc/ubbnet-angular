@@ -6,6 +6,7 @@
 .profile-card {
   max-width: 85%;
   margin: 20px auto;
+  margin-top: 0;
 }
 
 .profile-picture {
@@ -17,6 +18,8 @@
 }
 
 .coverImageSection {
+  display: block;
+  background-image: linear-gradient(black, white);
   height: 300px;
 }
 
@@ -55,4 +58,25 @@
 
 .intro {
   background-color: rgba(245, 245, 245, 0.781);
+}
+
+.addPostButton {
+  background-color: paleturquoise;
+  border: 0;
+  padding: 10px;
+  font-weight: 700;
+  width: 42vw;
+  border-radius: 20px;
+}
+
+.addCoverImageButton {
+  position: absolute;
+  top: 85%;
+  left: 85%;
+  border: 0;
+  cursor: pointer;
+  color: white;
+  background-color: grey;
+  padding: 10px;
+  border-radius: 10px;
 }
