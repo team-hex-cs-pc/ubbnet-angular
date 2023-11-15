@@ -1,4 +1,3 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
@@ -19,9 +18,6 @@ export class LoginComponent {
         this.errorAfterLogin = '';
         localStorage.setItem('token', res.token);
         await this.userService.getUserInformation();
-        this.userService.user$.subscribe((user) => {
-          console.log(user);
-        });
       } else {
         this.errorAfterLogin = 'Invalid username or password';
       }
