@@ -7,15 +7,20 @@ import { LoginComponent } from './pages/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { HttpClientModule } from '@angular/common/http';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent, LoginComponent, ProfileComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MatDividerModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
