@@ -5,5 +5,5 @@ export interface User {
   firstName: string;
   lastName: string;
   gender: string;
-  birthday: string;
+  birthdate: string;
 }

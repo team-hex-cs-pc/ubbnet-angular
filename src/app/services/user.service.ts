@@ -6,6 +6,7 @@ import {throwError} from "rxjs/internal/observable/throwError";
 import {catchError} from "rxjs/internal/operators/catchError";
 import {Router} from "@angular/router";
 import {User} from "../models/User";
+import {Post} from "../post.model";
 
 @Injectable({
   providedIn: 'root'
@@ -109,4 +110,14 @@ export class UserService {
     return lastValueFrom(this.http.get(url, { headers: this.header.headers, responseType: 'text' }));
   }
 
+  async registerUser(userData: User): Promise<User> {
+      const url = `${this.usersUrl}/register`;
+      console.log('Register user method called'); // Add this line for logging
+
+      try {
+          return await lastValueFrom(this.http.post<User>(url, userData));
+      } catch (error) {
+          throw error;
+      }
+  }
 }

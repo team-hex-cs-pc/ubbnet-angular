@@ -22,38 +22,40 @@ import {CommonModule} from "@angular/common";
 import {MatLineModule} from "@angular/material/core";
 import {ProfileComponent} from './pages/profile/profile.component';
 import {MatDividerModule} from '@angular/material/divider';
+import {RegisterComponent} from "./pages/register/register.component";
 
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        UserListComponent,
-        PostListComponent,
-        AddPostComponent,
-        TimeAgoPipe,
-        LoginComponent,
-        ProfileComponent
-    ],
-    imports: [
-        BrowserModule,
-        MatButtonModule,
-        MatInputModule,
-        MatToolbarModule,
-        AppRoutingModule,
-        MaterialModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        CommonModule,
-        ReactiveFormsModule,
-        FormsModule,
-        MatIconModule,
-        MatCardModule,
-        MatListModule,
-        MatLineModule,
-        MatDividerModule
-    ],
-    providers: [],
-    bootstrap: [AppComponent],
+  declarations: [
+    AppComponent,
+    UserListComponent,
+    PostListComponent,
+    AddPostComponent,
+    TimeAgoPipe,
+    LoginComponent,
+    ProfileComponent,
+    RegisterComponent
+  ],
+  imports: [
+    BrowserModule,
+    MatButtonModule,
+    MatInputModule,
+    MatToolbarModule,
+    AppRoutingModule,
+    MaterialModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatIconModule,
+    MatCardModule,
+    MatListModule,
+    MatLineModule,
+    MatDividerModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }

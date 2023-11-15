@@ -11,7 +11,7 @@ import {User} from "../../models/User";
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  user: User = {id: "", username: "", email: "", firstName: "", lastName: "", gender: "", birthday: ""};
+  user: User = {id: "", username: "", email: "", firstName: "", lastName: "", gender: "", birthdate: ""};
   posts: Post[] = [];
 
   constructor(

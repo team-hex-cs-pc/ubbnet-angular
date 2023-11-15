@@ -6,6 +6,7 @@ import {PostListComponent} from "./post-list/post-list.component";
 import {AddPostComponent} from "./add-post/add-post.component";
 import {AuthGuard} from "./services/AuthGuard";
 import { ProfileComponent } from './pages/profile/profile.component';
+import {RegisterComponent} from "./pages/register/register.component";
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
   },
   {
     path: 'users',
