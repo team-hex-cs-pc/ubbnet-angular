@@ -5,7 +5,15 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class TimeAgoPipe implements PipeTransform {
   transform(dateString: string): string {
-    const date = new Date(dateString);
+    // Split the date string into day, month, and year
+    const parts = dateString.split('-');
+    const day = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10) - 1; // Months are zero-based (0-11)
+    const year = parseInt(parts[2], 10);
+
+    // Construct a new Date object with the parts in a compatible format (YYYY, MM, DD)
+    const date = new Date(year, month, day);
+
     const now = new Date();
 
     const diffInMilliseconds = now.getTime() - date.getTime();
