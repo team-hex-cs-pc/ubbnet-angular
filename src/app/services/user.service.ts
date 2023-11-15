@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {BehaviorSubject, lastValueFrom} from 'rxjs';
-import {User} from "../user.model";
 import { AuthResponse } from '../models/AuthResponse';
 import {throwError} from "rxjs/internal/observable/throwError";
 import {catchError} from "rxjs/internal/operators/catchError";
 import {Router} from "@angular/router";
+import {User} from "../models/User";
 
 @Injectable({
   providedIn: 'root'

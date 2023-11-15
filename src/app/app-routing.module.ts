@@ -30,10 +30,11 @@ const routes: Routes = [
     path: 'add-post',
     component: AddPostComponent,
     canActivate: [AuthGuard]
-  }
+  },
   {
     path: 'profile/:username',
     component: ProfileComponent,
+    canActivate: [AuthGuard]
   },
 ];
 

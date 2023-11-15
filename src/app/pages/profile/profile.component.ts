@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Post } from 'src/app/models/Post';
-import { User } from 'src/app/models/User';
 import { PostService } from 'src/app/services/post.service';
 import { UserService } from 'src/app/services/user.service';
+import {User} from "../../models/User";
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  user: User | null = null;
+  user: User = {id: "", username: "", email: "", firstName: "", lastName: "", gender: "", birthday: ""};
   posts: Post[] = [];
 
   constructor(
