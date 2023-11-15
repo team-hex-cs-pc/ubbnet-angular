@@ -19,18 +19,21 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {CommonModule} from "@angular/common";
-import {MatLegacyListModule} from "@angular/material/legacy-list";
 import {MatLineModule} from "@angular/material/core";
+import {ProfileComponent} from './pages/profile/profile.component';
+import {MatDividerModule} from '@angular/material/divider';
+
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    UserListComponent,
-    PostListComponent,
-    AddPostComponent,
-    TimeAgoPipe,
-    LoginComponent
-  ],
+    declarations: [
+        AppComponent,
+        UserListComponent,
+        PostListComponent,
+        AddPostComponent,
+        TimeAgoPipe,
+        LoginComponent,
+        ProfileComponent
+    ],
     imports: [
         BrowserModule,
         MatButtonModule,
@@ -46,9 +49,11 @@ import {MatLineModule} from "@angular/material/core";
         MatIconModule,
         MatCardModule,
         MatListModule,
-        MatLineModule
+        MatLineModule,
+        MatDividerModule
     ],
-  providers: [],
-  bootstrap: [AppComponent],
+    providers: [],
+    bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+}

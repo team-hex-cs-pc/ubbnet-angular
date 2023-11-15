@@ -5,7 +5,7 @@ import {UserListComponent} from "./user-list/user-list.component";
 import {PostListComponent} from "./post-list/post-list.component";
 import {AddPostComponent} from "./add-post/add-post.component";
 import {AuthGuard} from "./services/AuthGuard";
-
+import { ProfileComponent } from './pages/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -31,6 +31,10 @@ const routes: Routes = [
     component: AddPostComponent,
     canActivate: [AuthGuard]
   }
+  {
+    path: 'profile/:username',
+    component: ProfileComponent,
+  },
 ];
 
 

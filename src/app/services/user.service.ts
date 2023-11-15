@@ -83,6 +83,15 @@ export class UserService {
     this.router.navigate(['/login']); // Adjust '/login' to match your login page route
   }
 
+  async getUserByUsername(username: string): Promise<User> {
+    const result = this.httpClient.get<User>(
+      `http://localhost:8080/api/user/${username}`,
+      this.header
+    );
+
+    return lastValueFrom(result);
+  }
+
   async getUserInformation() {
     this.httpClient
       .get<User>('http://localhost:8080/api/user/details', {

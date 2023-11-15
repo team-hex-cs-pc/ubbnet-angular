@@ -19,6 +19,7 @@ export class LoginComponent {
         this.errorAfterLogin = '';
 
         localStorage.setItem('token', res.token);
+        await this.userService.getUserInformation();
         localStorage.setItem('email', email);
 
         this.userService.setLoggedIn(true);
@@ -32,5 +33,4 @@ export class LoginComponent {
       this.errorAfterLogin = 'Invalid email or password';
     }
   }
-
 }
