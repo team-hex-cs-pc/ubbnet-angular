@@ -1,7 +1,10 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {lastValueFrom} from 'rxjs';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import {lastValueFrom, Observable} from 'rxjs';
 import {Post} from "../post.model";
+import {User} from "../models/User";
+import {catchError} from "rxjs/internal/operators/catchError";
+import {throwError} from "rxjs/internal/observable/throwError";
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +23,24 @@ export class PostService {
         this.httpClient = http;
     }
 
-  getPosts(): Promise<any[]> {
-    const url = `${this.postsUrl}`;
-    return lastValueFrom(this.http.get<Post[]>(url));
+  getPosts(): Observable<{ content: User[] }> {
+    return this.http.get<{ content: User[] }>(this.postsUrl)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    let errorMessage;
+    if (error.error instanceof ErrorEvent) {
+      // Client-side error
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // Server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.error(errorMessage);
+    return throwError(errorMessage);
   }
 
   async addPost(post: Post): Promise<Post> {

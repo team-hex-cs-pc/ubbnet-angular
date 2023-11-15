@@ -3,6 +3,7 @@ import {PostService} from "../services/post.service";
 import {Post} from "../post.model";
 import {UserService} from "../services/user.service";
 import {Router} from "@angular/router";
+import {lastValueFrom} from "rxjs";
 
 @Component({
   selector: 'app-post-list',
@@ -16,9 +17,20 @@ export class PostListComponent implements OnInit {
   constructor(private postService: PostService, private router: Router, private userService: UserService) {
   }
 
-  async ngOnInit(): Promise<void> {
-    this.posts = await this.postService.getPosts();
-    // await this.populatePostAuthors();
+  ngOnInit(): void {
+    this.getPosts();
+  }
+
+  async getPosts(): Promise<void> {
+    try {
+      const response: { content: any[] } = await lastValueFrom(this.postService.getPosts());
+      if (response && response.content) {
+        this.posts = response.content;
+        console.log('Posts:', this.posts);
+      }
+    } catch (error: any) {
+      console.error('Error fetching posts:', error);
+    }
   }
 
   async populatePostAuthors() {
