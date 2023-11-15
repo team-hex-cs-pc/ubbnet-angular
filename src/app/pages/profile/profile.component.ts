@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Post } from 'src/app/models/Post';
 import { User } from 'src/app/models/User';
+import { PostService } from 'src/app/services/post.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -11,43 +12,23 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ProfileComponent implements OnInit {
   user: User | null = null;
-  posts: Post[] = [
-    {
-      category: 'category',
-      content: 'asdasdasdas',
-      likes: 1,
-      title: 'jsdkjbfjds',
-      publicationDate: '2021-10-10',
-    },
-    {
-      category: 'category',
-      content: 'asdasdasdas',
-      likes: 1,
-      title: 'jsdkjbfjds',
-      publicationDate: '2021-10-10',
-    },
-    {
-      category: 'category',
-      content: 'asdasdasdas',
-      likes: 1,
-      title: 'jsdkjbfjds',
-      publicationDate: '2021-10-10',
-    },
-  ];
+  posts: Post[] = [];
 
   constructor(
     private userService: UserService,
+    private postService: PostService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
 
   async ngOnInit(): Promise<void> {
     const params = this.route.params.subscribe(async (params) => {
-      const result = await this.userService.getUserByUsername(
-        params['username']
-      );
-
+      const username = params['username'];
+      const result = await this.userService.getUserByUsername(username);
       this.user = result;
+
+      const posts = await this.postService.getPostsByUsername(username);
+      this.posts = posts;
     });
   }
 }
