@@ -8,6 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, ProfileComponent],
@@ -17,6 +19,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
     MaterialModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MatDividerModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

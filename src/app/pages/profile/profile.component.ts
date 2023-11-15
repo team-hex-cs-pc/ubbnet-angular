@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
-import { lastValueFrom } from 'rxjs';
+import { Post } from 'src/app/models/Post';
+import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -9,6 +10,31 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
+  user: User | null = null;
+  posts: Post[] = [
+    {
+      category: 'category',
+      content: 'asdasdasdas',
+      likes: 1,
+      title: 'jsdkjbfjds',
+      publicationDate: '2021-10-10',
+    },
+    {
+      category: 'category',
+      content: 'asdasdasdas',
+      likes: 1,
+      title: 'jsdkjbfjds',
+      publicationDate: '2021-10-10',
+    },
+    {
+      category: 'category',
+      content: 'asdasdasdas',
+      likes: 1,
+      title: 'jsdkjbfjds',
+      publicationDate: '2021-10-10',
+    },
+  ];
+
   constructor(
     private userService: UserService,
     private router: Router,
@@ -20,7 +46,8 @@ export class ProfileComponent implements OnInit {
       const result = await this.userService.getUserByUsername(
         params['username']
       );
-      console.log(result);
+
+      this.user = result;
     });
   }
 }
