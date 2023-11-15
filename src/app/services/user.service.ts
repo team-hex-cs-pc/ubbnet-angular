@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
-import {BehaviorSubject, lastValueFrom} from 'rxjs';
+import {BehaviorSubject, lastValueFrom, Observable} from 'rxjs';
 import { AuthResponse } from '../models/AuthResponse';
 import {throwError} from "rxjs/internal/observable/throwError";
 import {catchError} from "rxjs/internal/operators/catchError";
@@ -40,13 +40,13 @@ export class UserService {
     return this.loggedInStatus;
   }
 
-  getUsers(): Promise<any> {
-    return this.http.get<User>(this.usersUrl)
-      .pipe(
-        catchError(this.handleError)
-      )
-      .toPromise();
+  getUsers(): Observable<{ content: User[] }> {
+    return this.http.get<{ content: User[] }>(this.usersUrl)
+        .pipe(
+            catchError(this.handleError)
+        );
   }
+
 
   private handleError(error: HttpErrorResponse) {
     let errorMessage;

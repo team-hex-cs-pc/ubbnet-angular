@@ -20,7 +20,7 @@ export class UserListComponent implements OnInit {
 
   async getUsers(): Promise<void> {
     try {
-      const response: { content: any[] } = await lastValueFrom(await this.userService.getUsers());
+      const response: { content: any[] } = await lastValueFrom(this.userService.getUsers());
       if (response && response.content) {
         this.users = response.content;
         console.log('Users:', this.users);
@@ -29,7 +29,6 @@ export class UserListComponent implements OnInit {
       console.error('Error fetching users:', error);
     }
   }
-
 
   goToProtectedPage() {
     this.router.navigate(['/protected']); // Navigate to the protected page
