@@ -1,7 +1,7 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import {User} from "../../models/User";
 
 @Component({
   selector: 'app-login',
@@ -18,10 +18,10 @@ export class LoginComponent {
       if (res) {
         this.errorAfterLogin = '';
         localStorage.setItem('token', res.token);
-        await this.userService.getUserInformation();
-        this.userService.user$.subscribe((user) => {
-          console.log(user);
-        });
+        this.userService.setLoggedIn(true);
+
+        await this.router.navigate(['/posts']); // navigate to desired route after successful login
+        console.log('Login Successful!');
       } else {
         this.errorAfterLogin = 'Invalid username or password';
       }
@@ -29,4 +29,5 @@ export class LoginComponent {
       this.errorAfterLogin = 'Invalid username or password';
     }
   }
+
 }

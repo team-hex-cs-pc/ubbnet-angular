@@ -33,8 +33,10 @@ export class AddPostComponent {
     }
   }
 
-
   async likePost(post: Post) {
+  }
 
+  goToProtectedPage() {
+    this.router.navigate(['/protected']); // Navigate to the protected page
   }
 }

@@ -7,10 +7,9 @@ import {MaterialModule} from './material.module';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {UserListComponent} from './user-list/user-list.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {PostListComponent} from './post-list/post-list.component';
 import {AddPostComponent} from './add-post/add-post.component';
-import {ProfileComponent} from './profile/profile.component';
 import {TimeAgoPipe} from "./time-ago-pipe/time-ago-pipe.pipe";
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
@@ -19,6 +18,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -26,7 +26,6 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     UserListComponent,
     PostListComponent,
     AddPostComponent,
-    ProfileComponent,
     TimeAgoPipe,
     LoginComponent
   ],
@@ -43,6 +42,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     MaterialModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

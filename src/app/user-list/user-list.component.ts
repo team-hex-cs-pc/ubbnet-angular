@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../services/user.service";
 import {User} from "../user.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-list',
@@ -10,9 +11,23 @@ import {User} from "../user.model";
 export class UserListComponent implements OnInit {
   users: User[] = [];
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) { }
 
-  async ngOnInit(): Promise<void> {
-    this.users = await this.userService.getUsers();
+  ngOnInit(): void {
+    this.getUsers();
+  }
+
+  getUsers(): void {
+    this.userService.getUsers().then((response: { content: any[]; }) => {
+      if (response && response.content) {
+        this.users = response.content; // Extract 'content' array
+      }
+    }).catch((error: any) => {
+      console.error('Error fetching users:', error);
+    });
+  }
+
+  goToProtectedPage() {
+    this.router.navigate(['/protected']); // Navigate to the protected page
   }
 }

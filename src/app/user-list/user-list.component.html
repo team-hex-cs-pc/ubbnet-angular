@@ -1,25 +1,22 @@
 <div class="app-container">
-<!--    <h2>User List</h2>-->
-    <div class="table-responsive custom-table">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Gender</th>
-                <th>Age</th>
-                <th>Username</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let user of users">
-                <td>{{ user.name }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.gender }}</td>
-                <td>{{ user.age }}</td>
-                <td>{{ user.username }}</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+  <div *ngFor="let user of users" class="user-card">
+    <mat-card class="mat-elevation-z2">
+      <mat-card-header>
+        <mat-card-title>{{ user.username }}</mat-card-title>
+        <mat-card-subtitle>{{ user.email }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item>
+            <mat-icon mat-list-icon>email</mat-icon>
+            <span mat-line>{{ user.email }}</span>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon mat-list-icon>face</mat-icon>
+            <span mat-line>Gender: {{ user.gender }}</span>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
