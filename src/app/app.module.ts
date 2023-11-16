@@ -22,18 +22,21 @@ import {CommonModule} from "@angular/common";
 import {MatLineModule} from "@angular/material/core";
 import {ProfileComponent} from './pages/profile/profile.component';
 import {MatDividerModule} from '@angular/material/divider';
+import {RegisterComponent} from "./pages/register/register.component";
+import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        UserListComponent,
-        PostListComponent,
-        AddPostComponent,
-        TimeAgoPipe,
-        LoginComponent,
-        ProfileComponent
-    ],
+  declarations: [
+    AppComponent,
+    UserListComponent,
+    PostListComponent,
+    AddPostComponent,
+    TimeAgoPipe,
+    LoginComponent,
+    ProfileComponent,
+    RegisterComponent
+  ],
     imports: [
         BrowserModule,
         MatButtonModule,
@@ -50,10 +53,11 @@ import {MatDividerModule} from '@angular/material/divider';
         MatCardModule,
         MatListModule,
         MatLineModule,
-        MatDividerModule
+        MatDividerModule,
+        MatSelectModule
     ],
-    providers: [],
-    bootstrap: [AppComponent],
+  providers: [],
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }

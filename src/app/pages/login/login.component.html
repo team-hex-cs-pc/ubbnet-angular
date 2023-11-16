@@ -3,7 +3,7 @@
     <mat-card-title>Please login</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <form class="my-form">
+    <form class="login-form">
       <mat-form-field class="full-width">
         <mat-label>Email</mat-label>
         <input matInput placeholder="" name="email" required #email />
@@ -31,6 +31,9 @@
         </button>
       </mat-card-actions>
       <span style="color: red">{{ errorAfterLogin }}</span>
+      <br>
+      <br>
+      <p>Don't have an account? <a routerLink="/register">Register here</a></p>
     </form>
   </mat-card-content>
 </mat-card>
