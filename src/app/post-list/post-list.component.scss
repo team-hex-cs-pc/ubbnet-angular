@@ -73,11 +73,15 @@ p {
 }
 
 .scrollable-container {
-  margin-top: 200px;
-  height: max-content; /* Set your desired height */
-  overflow-y: auto; /* Enable vertical scroll */
+  margin-top: 10vh;
+  height: max-content;
+  /* Enable vertical scroll */
 }
 
 mat-card-actions {
   justify-content: center;
+}
+
+.app-container {
+  height: auto;
 }

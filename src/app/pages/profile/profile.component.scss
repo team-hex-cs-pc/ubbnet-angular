@@ -18,7 +18,10 @@
 }
 
 .coverImageSection {
-  display: block;
+  display: flex;
+  align-items: end;
+  justify-content: end;
+  flex-direction: column;
   background-image: linear-gradient(black, white);
   height: 300px;
 }
@@ -69,18 +72,25 @@
   border-radius: 20px;
 }
 
-.addCoverImageButton {
-  position: absolute;
-  top: 85%;
-  left: 85%;
+.addButton {
   border: 0;
+  width: 150px;
   cursor: pointer;
   color: white;
   background-color: grey;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 25px;
 }
 
 .footer {
   padding: 10px;
+}
+
+.profileButtons {
+  padding: 10px;
+  row-gap: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: end;
 }

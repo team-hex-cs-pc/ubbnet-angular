@@ -1,22 +1,25 @@
 <div class="app-container">
-    <div *ngFor="let user of users" class="user">
-        <mat-card class="mat-elevation-z2">
-            <mat-card-header>
-                <mat-card-subtitle>Username: {{ user.username }}</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                <mat-list>
-                    <mat-list-item>
-                        <mat-icon>email</mat-icon>
-                        <span mat-line>{{ user.email }}</span>
-                    </mat-list-item>
-                    <mat-list-item>
-                        <mat-icon>face</mat-icon>
-                        <span mat-line>Gender: {{ user.gender }}</span>
-                    </mat-list-item>
-                </mat-list>
-            </mat-card-content>
-
-        </mat-card>
+  <div *ngFor="let user of users" class="user">
+    <div (click)="navigateToProfilePage(user.username)">
+      <mat-card class="mat-elevation-z2">
+        <mat-card-header style="cursor: pointer" clickable>
+          <mat-card-subtitle>Username: {{ user.username }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-list>
+            <mat-list-item>
+              <mat-icon>account_circle </mat-icon>
+              <span mat-line
+                >&nbsp; {{ user?.firstName + " " + user?.lastName }}</span
+              >
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon>face</mat-icon>
+              <span mat-line>&nbsp; Gender: {{ user.gender }}</span>
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
     </div>
+  </div>
 </div>

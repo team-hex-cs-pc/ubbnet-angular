@@ -1,15 +1,20 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
-import {BehaviorSubject, lastValueFrom, Observable} from 'rxjs';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
+import { BehaviorSubject, lastValueFrom, Observable } from 'rxjs';
 import { AuthResponse } from '../models/AuthResponse';
-import {throwError} from "rxjs/internal/observable/throwError";
-import {catchError} from "rxjs/internal/operators/catchError";
-import {Router} from "@angular/router";
-import {User} from "../models/User";
-import {Post} from "../post.model";
+import { throwError } from 'rxjs/internal/observable/throwError';
+import { catchError } from 'rxjs/internal/operators/catchError';
+import { Router } from '@angular/router';
+import { User } from '../models/User';
+import { Post } from '../post.model';
+import { FriendRequest } from '../models/FriendRequest';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
   private loggedInStatus = false;
@@ -27,6 +32,9 @@ export class UserService {
 
   constructor(private http: HttpClient, private router: Router) {
     this.httpClient = http;
+    if (localStorage.getItem('token')) {
+      this.getUserInformation();
+    }
     // check if token exists in local storage and set login status accordingly
     this.loggedInStatus = !!localStorage.getItem('token');
   }
@@ -41,11 +49,10 @@ export class UserService {
     return this.loggedInStatus;
   }
 
-  getUsers(): Observable<{ content: User[] }> {
-    return this.http.get<{ content: User[] }>(this.usersUrl)
-        .pipe(
-            catchError(this.handleError)
-        );
+  getUsers(): Observable<User[]> {
+    return this.http
+      .get<User[]>(this.usersUrl)
+      .pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -106,18 +113,110 @@ export class UserService {
 
   getUsernameByEmail(email: string): Promise<string> {
     const url = `${this.usersUrl}/username/${email}`;
-    console.log(lastValueFrom(this.http.get(url, { headers: this.header.headers, responseType: 'text' })));
-    return lastValueFrom(this.http.get(url, { headers: this.header.headers, responseType: 'text' }));
+    console.log(
+      lastValueFrom(
+        this.http.get(url, {
+          headers: this.header.headers,
+          responseType: 'text',
+        })
+      )
+    );
+    return lastValueFrom(
+      this.http.get(url, { headers: this.header.headers, responseType: 'text' })
+    );
   }
 
   async registerUser(userData: User): Promise<User> {
-      const url = `${this.usersUrl}/register`;
-      console.log('Register user method called'); // Add this line for logging
+    const url = `${this.usersUrl}/register`;
+    console.log('Register user method called'); // Add this line for logging
 
-      try {
-          return await lastValueFrom(this.http.post<User>(url, userData));
-      } catch (error) {
-          throw error;
-      }
+    try {
+      return await lastValueFrom(this.http.post<User>(url, userData));
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async sendFriendRequest(email: string): Promise<void> {
+    const url = `${this.usersUrl}/add-friend/${email}`;
+    try {
+      await lastValueFrom(
+        this.http.post(
+          url,
+          {},
+          {
+            headers: new HttpHeaders({
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
+            }),
+          }
+        )
+      );
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async hasFriendRequest(username: string): Promise<FriendRequest> {
+    const url = `${this.usersUrl}/get-friend-request/${username}`;
+    try {
+      return lastValueFrom(
+        this.http.get<FriendRequest>(url, {
+          headers: new HttpHeaders({
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          }),
+        })
+      );
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async isFriend(email: string): Promise<boolean> {
+    const url = `${this.usersUrl}/is-friend/${email}`;
+    try {
+      return lastValueFrom(
+        this.http.get<boolean>(url, {
+          headers: new HttpHeaders({
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          }),
+        })
+      );
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async cancelFriendRequest(id: number): Promise<void> {
+    const url = `${this.usersUrl}/decline-friend/${id}`;
+    try {
+      await lastValueFrom(
+        this.http.delete(url, {
+          headers: new HttpHeaders({
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          }),
+        })
+      );
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async acceptFriendRequest(id: number): Promise<void> {
+    const url = `${this.usersUrl}/accept-friend/${id}`;
+    try {
+      await lastValueFrom(
+        this.http.post(
+          url,
+          {},
+          {
+            headers: new HttpHeaders({
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
+            }),
+          }
+        )
+      );
+    } catch (error) {
+      throw error;
+    }
   }
 }
