@@ -3,7 +3,7 @@
     <mat-card-title>Please register</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <form class="my-form" (ngSubmit)="register()" #registrationForm="ngForm">
+    <form class="register-form" (ngSubmit)="register()" #registrationForm="ngForm">
       <mat-form-field class="full-width">
         <mat-label>First name</mat-label>
         <input matInput type="text" name="firstName" [(ngModel)]="user.firstName" required>
@@ -18,7 +18,11 @@
       </mat-form-field>
       <mat-form-field class="full-width">
         <mat-label>Gender</mat-label>
-        <input matInput type="text" name="gender" [(ngModel)]="user.gender" required>
+        <mat-select name="gender" [(ngModel)]="user.gender" required>
+          <mat-option value="FEMALE">Female</mat-option>
+          <mat-option value="MALE">Male</mat-option>
+          <mat-option value="OTHER">Rather not say</mat-option>
+        </mat-select>
       </mat-form-field>
       <mat-form-field class="full-width">
         <mat-label>Birthday</mat-label>

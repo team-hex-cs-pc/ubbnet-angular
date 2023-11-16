@@ -23,6 +23,7 @@ import {MatLineModule} from "@angular/material/core";
 import {ProfileComponent} from './pages/profile/profile.component';
 import {MatDividerModule} from '@angular/material/divider';
 import {RegisterComponent} from "./pages/register/register.component";
+import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
@@ -36,24 +37,25 @@ import {RegisterComponent} from "./pages/register/register.component";
     ProfileComponent,
     RegisterComponent
   ],
-  imports: [
-    BrowserModule,
-    MatButtonModule,
-    MatInputModule,
-    MatToolbarModule,
-    AppRoutingModule,
-    MaterialModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    MatIconModule,
-    MatCardModule,
-    MatListModule,
-    MatLineModule,
-    MatDividerModule
-  ],
+    imports: [
+        BrowserModule,
+        MatButtonModule,
+        MatInputModule,
+        MatToolbarModule,
+        AppRoutingModule,
+        MaterialModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        MatIconModule,
+        MatCardModule,
+        MatListModule,
+        MatLineModule,
+        MatDividerModule,
+        MatSelectModule
+    ],
   providers: [],
   bootstrap: [AppComponent],
 })
