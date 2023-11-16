@@ -3,26 +3,100 @@
 </mat-toolbar>
 <div>
   <mat-card class="profile-card">
-    <div class="coverImageSection">
-      <button class="addCoverImageButton">Add cover image</button>
-    </div>
-    <mat-card-header>
-      <div mat-card-avatar class="profile-picture">
-        <mat-icon
-          aria-hidden="false"
-          aria-label="Example home icon"
-          fontIcon=""
-          role="img"
-          style="width: 200px; height: 200px; font-size: 100px"
-          >account_circle</mat-icon
+    <div class="coverImageSection"></div>
+    <div
+      style="
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        height: 100px;
+      "
+    >
+      <div style="height: 100px; display: flex">
+        <div mat-card-avatar class="profile-picture">
+          <mat-icon
+            aria-hidden="false"
+            aria-label="Example home icon"
+            fontIcon=""
+            role="img"
+            style="width: 200px; height: 200px; font-size: 100px"
+            >account_circle</mat-icon
+          >
+        </div>
+        <div style="display: flex; align-items: end; margin-left: 20px">
+          <mat-card-title *ngIf="user !== null">{{
+            user.firstName + " " + user.lastName
+          }}</mat-card-title>
+        </div>
+      </div>
+      <div class="profileButtons">
+        <button
+          class="addButton"
+          *ngIf="loggedInUser !== null && loggedInUser.username === username"
         >
+          Add cover image
+        </button>
+        <button
+          class="addButton"
+          *ngIf="
+            isFriend === false &&
+            loggedInUser !== null &&
+            loggedInUser.username !== this.username &&
+            friendRequest === null
+          "
+          (click)="sendFriendRequest()"
+        >
+          {{ "Add friend" }}
+        </button>
+        <button
+          class="addButton"
+          style="width: 200px"
+          *ngIf="
+            isFriend === false &&
+            loggedInUser !== null &&
+            loggedInUser.username !== this.username &&
+            friendRequest !== null &&
+            friendRequest.senderUsername === loggedInUser.username
+          "
+        >
+          {{ "Friend request already sent" }}
+        </button>
+        <div *ngIf="isFriend === true">
+          <button mat-button [matMenuTriggerFor]="menu" class="addButton">
+            Friend
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>Unfriend</button>
+            <button mat-menu-item>Block</button>
+          </mat-menu>
+        </div>
+        <div
+          style="display: flex; flex-direction: column; row-gap: 20px"
+          *ngIf="
+            isFriend === false &&
+            loggedInUser !== null &&
+            friendRequest !== null &&
+            friendRequest !== undefined &&
+            friendRequest.senderUsername !== loggedInUser.username
+          "
+        >
+          <button
+            class="addButton"
+            *ngIf="loggedInUser !== null"
+            (click)="cancelFriendRequest()"
+          >
+            Cancel friend
+          </button>
+          <button
+            class="addButton"
+            *ngIf="loggedInUser !== null"
+            (click)="acceptFriendRequest()"
+          >
+            Accept friend
+          </button>
+        </div>
       </div>
-      <div style="display: flex; align-items: end; margin-left: 20px">
-        <mat-card-title *ngIf="user !== null">{{
-          user.firstName + " " + user.lastName
-        }}</mat-card-title>
-      </div>
-    </mat-card-header>
+    </div>
   </mat-card>
   <div class="heroSection">
     <div class="leftArea"></div>
