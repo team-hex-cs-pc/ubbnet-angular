@@ -25,7 +25,7 @@ export class PostListComponent implements OnInit {
 
   async getPosts(): Promise<void> {
     try {
-      const response: Post[] = await lastValueFrom(this.postService.getPosts());
+      const response: Post[] = await this.postService.getPosts();
 
       console.log(response);
       this.posts = response;

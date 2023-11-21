@@ -9,58 +9,26 @@ import { Post } from '../post.model';
 import { User } from '../models/User';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { throwError } from 'rxjs/internal/observable/throwError';
+import { CrudService } from './crud.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class PostService {
-  private postsUrl = 'http://localhost:8080/api/post';
-  httpClient: HttpClient;
-  header = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json; charset=utf-8',
-      'Access-Control-Allow-Origin': '*',
-    }),
-  };
-
-  constructor(private http: HttpClient) {
-    this.httpClient = http;
+export class PostService extends CrudService<Post> {
+  constructor(http: HttpClient) {
+    super(http, '/post');
   }
 
-  getPosts(): Observable<Post[]> {
-    return this.http
-      .get<Post[]>(this.postsUrl)
-      .pipe(catchError(this.handleError));
-  }
-
-  private handleError(error: HttpErrorResponse) {
-    let errorMessage;
-    if (error.error instanceof ErrorEvent) {
-      // Client-side error
-      errorMessage = `Error: ${error.error.message}`;
-    } else {
-      // Server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    console.error(errorMessage);
-    return throwError(errorMessage);
+  getPosts(): Promise<Post[]> {
+    return lastValueFrom(this.http.get<Post[]>('/post'));
   }
 
   async addPost(post: Post): Promise<Post> {
-    const url = `${this.postsUrl}`;
-    try {
-      return await lastValueFrom(this.http.post<Post>(url, post));
-    } catch (error) {
-      throw error;
-    }
+    return await lastValueFrom(this.http.post<Post>('/post', post));
   }
 
   async getPostsByUsername(username: string): Promise<Post[]> {
-    const result = this.httpClient.get<Post[]>(
-      `http://localhost:8080/api/user/posts/${username}`,
-      this.header
-    );
-
+    const result = this.http.get<Post[]>(`/user/posts/${username}`);
     return lastValueFrom(result);
   }
 }

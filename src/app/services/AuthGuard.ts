@@ -11,7 +11,7 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean | UrlTree {
-    if (this.userService.isLoggedIn()) {
+    if (this.userService.isLoggedIn) {
       return true; // Allow navigation if the user is logged in
     } else {
       return this.router.createUrlTree(['/login']); // Redirect to the login page if not logged in

@@ -19,7 +19,7 @@ export class AppComponent {
   }
 
   isLoggedIn() {
-    return this.userService.isLoggedIn();
+    return this.userService.isLoggedIn;
   }
 
   login() {

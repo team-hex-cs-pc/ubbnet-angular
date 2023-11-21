@@ -20,7 +20,7 @@ export class UserListComponent implements OnInit {
 
   async getUsers(): Promise<void> {
     try {
-      const response: User[] = await lastValueFrom(this.userService.getUsers());
+      const response: User[] = await this.userService.getUsers();
       this.users = response;
     } catch (error: any) {
       console.error('Error fetching users:', error);
