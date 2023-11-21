@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Post } from '../post.model';
+import { Post } from '../../models/post.model';
 import { Router } from '@angular/router';
-import { PostService } from '../services/post.service';
-import { UserService } from '../services/user.service';
+import { PostService } from 'src/services/post.service';
+import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-add-post',

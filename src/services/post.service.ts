@@ -1,15 +1,8 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
-} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { lastValueFrom, Observable } from 'rxjs';
-import { Post } from '../post.model';
-import { User } from '../models/User';
-import { catchError } from 'rxjs/internal/operators/catchError';
-import { throwError } from 'rxjs/internal/observable/throwError';
 import { CrudService } from './crud.service';
+import { Post } from 'src/models/post.model';
 
 @Injectable({
   providedIn: 'root',

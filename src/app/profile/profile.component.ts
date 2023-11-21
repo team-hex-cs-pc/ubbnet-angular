@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
-import { Post } from 'src/app/models/Post';
-import { PostService } from 'src/app/services/post.service';
-import { UserService } from 'src/app/services/user.service';
-import { User } from '../../models/User';
 import { HttpErrorResponse } from '@angular/common/http';
-import { FriendRequest } from 'src/app/models/FriendRequest';
+import { User } from 'src/models/user.model';
+import { Post } from 'src/models/post.model';
+import { FriendRequest } from 'src/models/FriendRequest';
+import { UserService } from 'src/services/user.service';
+import { PostService } from 'src/services/post.service';
 
 @Component({
   selector: 'app-profile',

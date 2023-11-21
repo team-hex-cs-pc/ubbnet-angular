@@ -14,14 +14,13 @@ import {
   skip,
   tap,
 } from 'rxjs';
-import { AuthResponse } from '../models/AuthResponse';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { Router } from '@angular/router';
-import { User } from '../models/User';
-import { Post } from '../post.model';
-import { FriendRequest } from '../models/FriendRequest';
 import { CrudService } from './crud.service';
+import { User } from 'src/models/user.model';
+import { AuthResponse } from 'src/models/AuthResponse';
+import { FriendRequest } from 'src/models/FriendRequest';
 
 @Injectable({
   providedIn: 'root',

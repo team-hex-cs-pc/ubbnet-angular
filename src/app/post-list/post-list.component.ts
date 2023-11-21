@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { PostService } from '../services/post.service';
-import { Post } from '../post.model';
-import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
+import { Post } from 'src/models/post.model';
+import { PostService } from 'src/services/post.service';
+import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-post-list',

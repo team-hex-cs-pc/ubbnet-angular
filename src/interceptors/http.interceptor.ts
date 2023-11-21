@@ -6,7 +6,7 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/services/user.service';
 import { environment } from 'src/environments/environment';
 
 @Injectable()
