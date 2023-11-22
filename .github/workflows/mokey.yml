@@ -1,0 +1,16 @@
+on:
+  push:
+    branches:
+    - dev
+  workflow_dispatch:
+
+jobs:
+  trigger_deploy:
+    name: Trigger self-deploy via Deploy Monkey
+    runs-on: ubuntu-latest
+    steps:
+    - uses: distributhor/workflow-webhook@v3
+      with:
+        webhook_url: https://deploy.laurcons.ro/webhook/teamhex.angular/manual
+        webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
+    
