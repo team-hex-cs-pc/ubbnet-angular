@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { User } from '../models/User';
 import { Post } from '../post.model';
 import { FriendRequest } from '../models/FriendRequest';
+import { ChatMessage } from '../models/ChatMessage';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +22,8 @@ export class UserService {
   private usersUrl = 'http://localhost:8080/api/user';
   private static _user = new BehaviorSubject<User | null>(null);
   user$ = UserService._user.asObservable();
-
+  private chatSocket: WebSocket;
+  private static messages: Map<string, ChatMessage[]> = new Map();
   httpClient: HttpClient;
   header = {
     headers: new HttpHeaders({
@@ -32,11 +34,28 @@ export class UserService {
 
   constructor(private http: HttpClient, private router: Router) {
     this.httpClient = http;
+    this.chatSocket = new WebSocket('ws://localhost:8080/chat');
     if (localStorage.getItem('token')) {
       this.getUserInformation();
     }
     // check if token exists in local storage and set login status accordingly
     this.loggedInStatus = !!localStorage.getItem('token');
+  }
+
+  sendMessage(message: string): void {
+    var chatMessage: ChatMessage = {
+      message: message,
+    };
+
+    this.chatSocket.send(JSON.stringify(chatMessage));
+  }
+
+  receiveMessage(handler: (chatMessage: ChatMessage) => void): void {
+    this.chatSocket.onmessage = (event) => {
+      const message: ChatMessage = JSON.parse(event.data);
+      console.log(message);
+      handler(message);
+    };
   }
 
   // Method to set login status

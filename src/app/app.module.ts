@@ -25,6 +25,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { RegisterComponent } from './pages/register/register.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { MatMenuModule } from '@angular/material/menu';
     LoginComponent,
     ProfileComponent,
     RegisterComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,

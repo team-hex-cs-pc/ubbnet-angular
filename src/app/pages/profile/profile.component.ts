@@ -39,16 +39,19 @@ export class ProfileComponent implements OnInit {
       this.username = username;
       const result = await this.userService.getUserByUsername(username);
       this.user = result;
-      this.isFriend = await this.userService.isFriend(this.user.email);
-      if (
-        this.isFriend === false &&
-        this.user.username !== this.loggedInUser?.username
-      ) {
-        this.friendRequest = await this.userService.hasFriendRequest(
-          this.user.email
-        );
+      try {
+        this.isFriend = await this.userService.isFriend(this.user.email);
+        if (
+          this.isFriend === false &&
+          this.user.username !== this.loggedInUser?.username
+        ) {
+          this.friendRequest = await this.userService.hasFriendRequest(
+            this.user.email
+          );
+        }
+      } catch (error) {
+        console.log(error);
       }
-
       const posts = await this.postService.getPostsByUsername(username);
       this.posts = posts;
     });
