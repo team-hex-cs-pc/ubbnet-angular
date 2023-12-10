@@ -45,6 +45,7 @@ export class UserService {
   sendMessage(message: string): void {
     var chatMessage: ChatMessage = {
       message: message,
+      from: UserService._user.value?.username!,
     };
 
     this.chatSocket.send(JSON.stringify(chatMessage));

@@ -2,7 +2,7 @@
   <span>Profile</span>
 </mat-toolbar>
 <div>
-  <app-chat></app-chat>
+  <app-chat *ngIf="this.isFriend === true"></app-chat>
   <mat-card class="profile-card">
     <div class="coverImageSection"></div>
     <div

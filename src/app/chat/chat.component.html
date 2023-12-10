@@ -11,9 +11,10 @@
   </div>
   <div class="chatSection">
     <div class="chat">
-      <span class="message" *ngFor="let message of messages">{{
-        message.message
-      }}</span>
+      <div *ngFor="let message of messages">
+        <p>{{ message.from }}</p>
+        <span class="message">{{ message.message }}</span>
+      </div>
     </div>
     <mat-form-field
       class="sendMessageInput"
