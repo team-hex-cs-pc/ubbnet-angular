@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
-import { ViewChild } from '@angular/core';
-import { MatSidenav } from '@angular/material/sidenav';
-import {UserService} from "./services/user.service";
+import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +17,7 @@ export class AppComponent {
   }
 
   isLoggedIn() {
-    return this.userService.isLoggedIn();
+    return this.userService.isLoggedIn;
   }
 
   login() {

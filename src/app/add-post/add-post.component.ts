@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Post } from '../post.model';
+import { Post } from '../../models/post.model';
 import { Router } from '@angular/router';
-import { PostService } from '../services/post.service';
-import { UserService } from '../services/user.service';
+import { PostService } from 'src/services/post.service';
+import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-add-post',
@@ -29,21 +29,13 @@ export class AddPostComponent {
     this.post.publicationDate = new Date().toISOString();
 
     try {
-      const email = localStorage.getItem('email');
-      if (email) {
-        this.post.username = await this.userService.getUsernameByEmail(email);
+        this.post.username = this.userService.user!.username;
         const response = await this.postService.addPost(this.post);
         // Handle the success response here
         console.log('Post added successfully', response);
 
         // Redirect to the "All Posts" page
         await this.router.navigate(['/posts']);
-      } else {
-        // Handle the case when email is null
-        console.error('Email not found in localStorage');
-        // Redirect to the "All Posts" page
-        await this.router.navigate(['/posts']);
-      }
     } catch (error) {
       // Handle other errors here
       console.error('Error while adding post', error);

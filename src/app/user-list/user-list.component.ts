@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
-import { User } from '../models/User';
-import { lastValueFrom } from 'rxjs';
+import { User } from 'src/models/user.model';
+import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-user-list',
@@ -20,7 +19,7 @@ export class UserListComponent implements OnInit {
 
   async getUsers(): Promise<void> {
     try {
-      const response: User[] = await lastValueFrom(this.userService.getUsers());
+      const response: User[] = await this.userService.getUsers();
       this.users = response;
     } catch (error: any) {
       console.error('Error fetching users:', error);
