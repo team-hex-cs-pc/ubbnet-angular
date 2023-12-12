@@ -31,11 +31,11 @@ export class UserListComponent implements OnInit {
   }
 
   goToProtectedPage() {
-    this.router.navigate(['/protected']); // Navigate to the protected page
+    this.router.navigate(['/protected']);
   }
 
   navigateToProfilePage(username: string) {
-    this.router.navigate([`/profile/${username}`]); // Navigate to the profile page
+    this.router.navigate([`/profile/${username}`]);
   }
 
   searchUsers(): void {
