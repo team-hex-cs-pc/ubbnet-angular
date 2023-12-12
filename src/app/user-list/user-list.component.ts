@@ -11,6 +11,8 @@ import { lastValueFrom } from 'rxjs';
 })
 export class UserListComponent implements OnInit {
   users: User[] = [];
+  filteredUsers : User[] = [];
+  usernameQuery: string = '';
 
   constructor(private userService: UserService, private router: Router) {}
 
@@ -22,6 +24,7 @@ export class UserListComponent implements OnInit {
     try {
       const response: User[] = await lastValueFrom(this.userService.getUsers());
       this.users = response;
+      this.filteredUsers = response;
     } catch (error: any) {
       console.error('Error fetching users:', error);
     }
@@ -33,5 +36,23 @@ export class UserListComponent implements OnInit {
 
   navigateToProfilePage(username: string) {
     this.router.navigate([`/profile/${username}`]); // Navigate to the profile page
+  }
+
+  searchUsers(): void {
+    this.filteredUsers = this.users.filter((user) =>
+      user.username.toLowerCase().includes(this.usernameQuery.toLowerCase()) ||
+      user.firstName.toLowerCase().includes(this.usernameQuery.toLowerCase()) ||
+      user.lastName.toLowerCase().includes(this.usernameQuery.toLowerCase()))
+      ;
+  }
+
+  filterUsers(): void{
+    this.searchUsers();
+  }
+
+  // Function to clear filters and show all users
+  clearFilters(): void {
+    this.usernameQuery = '';
+    this.filterUsers();
   }
 }

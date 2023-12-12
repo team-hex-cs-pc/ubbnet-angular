@@ -12,6 +12,9 @@ import { lastValueFrom } from 'rxjs';
 })
 export class PostListComponent implements OnInit {
   posts: Post[] = [];
+  filteredPosts: Post[] = [];
+  searchQuery: string = '';
+  categoryQuery: string = '';
 
   constructor(
     private postService: PostService,
@@ -29,15 +32,37 @@ export class PostListComponent implements OnInit {
 
       console.log(response);
       this.posts = response;
+      this.filteredPosts = response; // Initialize filteredPosts with all posts
       console.log('Posts:', this.posts);
     } catch (error: any) {
       console.error('Error fetching posts:', error);
     }
   }
 
+  // Function to filter posts by search query
+  searchPosts(): void {
+    this.filteredPosts = this.posts.filter(
+      (post) =>
+        post.title.toLowerCase().includes(this.searchQuery.toLowerCase()) &&
+        post.category.toLowerCase().includes(this.categoryQuery.toLowerCase())
+    );
+  }
+
   likePost(post: any) {}
 
   goToProtectedPage() {
-    this.router.navigate(['/protected']); // Navigate to the protected page
+    this.router.navigate(['/protected']);
+  }
+
+  // Function to handle filtering when the button is clicked
+  filterPosts(): void {
+    this.searchPosts();
+  }
+
+  // Function to clear filters and show all posts
+  clearFilters(): void {
+    this.searchQuery = '';
+    this.categoryQuery = '';
+    this.filterPosts(); // Trigger filtering to show all posts
   }
 }
