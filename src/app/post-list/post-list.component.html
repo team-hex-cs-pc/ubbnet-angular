@@ -1,23 +1,25 @@
 <div class="scrollable-container">
-    <div class="app-container">
-        <div *ngFor="let post of posts" class="post">
-            <mat-card>
-                <mat-card-header>
+  <div class="app-container">
+    <div *ngFor="let post of posts" class="post">
+      <mat-card>
+        <!-- <mat-card-header>
                     <mat-card-subtitle>{{ post.username }} posted ({{ post.publicationDate | timeAgo }})</mat-card-subtitle>
-                </mat-card-header>
-                <mat-card-content>
-                    <br>
-                    <mat-card-subtitle>Title: {{ post.title }}</mat-card-subtitle>
-                    <br>
-                    <mat-card-subtitle>Category: {{ post.category }}</mat-card-subtitle>
-                    <br>
-                    <mat-card-subtitle>Content:<br>{{ post.content }}</mat-card-subtitle>
-                </mat-card-content>
-                <mat-card-actions>
-                    <button mat-button (click)="likePost(post)">Like</button>
-                    <span class="like-icon">&#x2764; {{ post.likes }}</span>
-                </mat-card-actions>
-            </mat-card>
-        </div>
+                </mat-card-header> -->
+        <mat-card-content>
+          <br />
+          <mat-card-subtitle>Title: {{ post.title }}</mat-card-subtitle>
+          <br />
+          <mat-card-subtitle>Category: {{ post.category }}</mat-card-subtitle>
+          <br />
+          <mat-card-subtitle
+            >Content:<br />{{ post.content }}</mat-card-subtitle
+          >
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button (click)="likePost(post)">Like</button>
+          <span class="like-icon">&#x2764; {{ post.likes }}</span>
+        </mat-card-actions>
+      </mat-card>
     </div>
+  </div>
 </div>

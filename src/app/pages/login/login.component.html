@@ -1,5 +1,7 @@
 <mat-card class="my-card">
-  <mat-card-header style="align-self: center; margin-bottom: 30px; color: #cccccc">
+  <mat-card-header
+    style="align-self: center; margin-bottom: 30px; color: #cccccc"
+  >
     <mat-card-title>Please login</mat-card-title>
   </mat-card-header>
   <mat-card-content>
@@ -12,7 +14,7 @@
         <mat-label>Password</mat-label>
         <input
           matInput
-          placeholder="Password"
+          placeholder=""
           [type]="'password'"
           formControlName="password"
           required
@@ -31,8 +33,8 @@
         </button>
       </mat-card-actions>
       <span style="color: red">{{ errorAfterLogin }}</span>
-      <br>
-      <br>
+      <br />
+      <br />
       <p>Don't have an account? <a routerLink="/register">Register here</a></p>
     </form>
   </mat-card-content>
