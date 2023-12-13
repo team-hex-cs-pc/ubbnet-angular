@@ -6,7 +6,7 @@
     <button mat-raised-button color="primary" (click)="filterUsers()" class="search-button">Filter</button>
     <button mat-raised-button (click)="clearFilters()" class="search-button">Clear Search</button>
   </div>
-  <div style="margin-top: 20vh">
+  <!--<div style="margin-top: 20vh">-->
     <div *ngFor="let user of filteredUsers" class="user">
       <div (click)="navigateToProfilePage(user.username)">
         <mat-card class="mat-elevation-z2">
@@ -28,7 +28,7 @@
             </mat-list>
           </mat-card-content>
         </mat-card>
-      </div>
+    <!--  </div>-->
     </div>
   </div>
 </div>
