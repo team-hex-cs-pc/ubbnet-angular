@@ -12,9 +12,9 @@
   <div class="app-container">
     <div *ngFor="let post of filteredPosts" class="post">
       <mat-card>
-        <!-- <mat-card-header>
-                    <mat-card-subtitle>{{ post.username }} posted ({{ post.publicationDate | timeAgo }})</mat-card-subtitle>
-                </mat-card-header> -->
+        <mat-card-header>
+          <mat-card-subtitle>{{ post.username }} posted ({{ post.publicationDate | timeAgo }})</mat-card-subtitle>
+        </mat-card-header>
         <mat-card-content>
           <br />
           <mat-card-subtitle>Title: {{ post.title }}</mat-card-subtitle>
