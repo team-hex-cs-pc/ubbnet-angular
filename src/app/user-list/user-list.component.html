@@ -1,6 +1,13 @@
 <div class="app-container">
+  <div class="search-container">
+    <label for="username" class="cool-font">Find user:  </label>
+    <input type="text" id="username" [(ngModel)]="usernameQuery" placeholder="Enter the username or name of the person you want to find" class="search-input">
+    <br>
+    <button mat-raised-button color="primary" (click)="filterUsers()" class="search-button">Filter</button>
+    <button mat-raised-button (click)="clearFilters()" class="search-button">Clear Search</button>
+  </div>
   <div style="margin-top: 20vh">
-    <div *ngFor="let user of users" class="user">
+    <div *ngFor="let user of filteredUsers" class="user">
       <div (click)="navigateToProfilePage(user.username)">
         <mat-card class="mat-elevation-z2">
           <mat-card-header style="cursor: pointer" clickable>
