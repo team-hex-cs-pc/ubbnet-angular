@@ -7,6 +7,7 @@ import {AddPostComponent} from "./add-post/add-post.component";
 import {AuthGuard} from "./services/AuthGuard";
 import { ProfileComponent } from './pages/profile/profile.component';
 import {RegisterComponent} from "./pages/register/register.component";
+import {MatNativeDateModule} from "@angular/material/core";
 
 const routes: Routes = [
   {
@@ -46,7 +47,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    MatNativeDateModule
   ],
   exports: [RouterModule],
 })
