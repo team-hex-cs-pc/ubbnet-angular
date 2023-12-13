@@ -1,0 +1,40 @@
+<div class="content">
+  <div class="header">
+    <mat-icon
+      aria-hidden="false"
+      aria-label=""
+      fontIcon=""
+      role="img"
+      style="color: red; cursor: pointer"
+      >close</mat-icon
+    >
+  </div>
+  <div class="chatSection">
+    <div class="chat">
+      <div *ngFor="let message of messages">
+        <p>{{ message.from }}</p>
+        <span class="message">{{ message.message }}</span>
+      </div>
+    </div>
+    <mat-form-field
+      class="sendMessageInput"
+      style="width: 100%; height: min-content"
+    >
+      <mat-label>Message:</mat-label>
+      <input
+        matInput
+        id="message"
+        name="message"
+        style="width: 100%"
+        #messageInput
+      />
+      <button
+        matPrefix
+        style="background-color: transparent; border: none"
+        (click)="sendMessage(messageInput.value)"
+      >
+        <mat-icon matPrefix style="cursor: pointer">send</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+</div>
