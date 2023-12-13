@@ -1,6 +1,16 @@
 <div class="scrollable-container">
+  <div class="search-container">
+    <label for="title" class="cool-font">Search by Title:</label>
+    <input type="text" id="title" [(ngModel)]="searchQuery" placeholder="Enter title" class="search-input">
+    <br>
+    <label for="category" class="cool-font">Search by Category:</label>
+    <input type="text" id="category" [(ngModel)]="categoryQuery" placeholder="Enter category or content" class="search-input">
+    <br>
+    <button mat-raised-button color="primary" (click)="filterPosts()" class="search-button">Filter</button>
+    <button mat-raised-button (click)="clearFilters()" class="search-button">Clear Search</button>
+  </div>
   <div class="app-container">
-    <div *ngFor="let post of posts" class="post">
+    <div *ngFor="let post of filteredPosts" class="post">
       <mat-card>
         <!-- <mat-card-header>
                     <mat-card-subtitle>{{ post.username }} posted ({{ post.publicationDate | timeAgo }})</mat-card-subtitle>
@@ -23,3 +33,4 @@
     </div>
   </div>
 </div>
+
