@@ -13,7 +13,22 @@
 
     <mat-form-field class="form-group">
       <mat-label>Category: </mat-label>
-      <input matInput id="category" name="category" [(ngModel)]="post.category" required>
+      <mat-select id="category" name="category" [(ngModel)]="post.category">
+        <mat-option value="Option 1">#news</mat-option>
+        <mat-option value="Option 2">#animals</mat-option>
+        <mat-option value="Option 2">#tech</mat-option>
+        <mat-option value="Option 2">#sports</mat-option>
+        <mat-option value="Option 2">#food</mat-option>
+        <mat-option value="Option 2">#travel</mat-option>
+        <mat-option value="Option 2">#fashion</mat-option>
+        <mat-option value="Option 2">#health</mat-option>
+        <mat-option value="Option 2">#environment</mat-option>
+        <mat-option value="Option 2">#art</mat-option>
+        <mat-option value="Option 2">#education</mat-option>
+        <mat-option value="Option 2">#motivation</mat-option>
+        <mat-option value="Option 2">#music</mat-option>
+        <mat-option value="Option 2">#other</mat-option>
+      </mat-select>
     </mat-form-field>
 
     <div class="button-container">
