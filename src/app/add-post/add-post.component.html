@@ -1,15 +1,28 @@
 <div class="app-container2">
-  <h2>What's on you mind?</h2>
-  <form class="needs-validation custom-form" novalidate>
-    <mat-form-field class="form-group">
-      <mat-label>Title:</mat-label>
-      <input matInput id="title" name="title" [(ngModel)]="post.title" required>
-    </mat-form-field>
+  <mat-card class="card">
+    <h2>What's on you mind?</h2>
+    <form class="form" novalidate>
+      <mat-form-field class="form-group">
+        <mat-label>Title:</mat-label>
+        <input
+          matInput
+          id="title"
+          name="title"
+          [(ngModel)]="post.title"
+          required
+        />
+      </mat-form-field>
 
-    <mat-form-field class="form-group">
-      <mat-label>Content:</mat-label>
-      <input matInput id="content" name="content" [(ngModel)]="post.content" required>
-    </mat-form-field>
+      <mat-form-field class="form-group">
+        <mat-label>Content:</mat-label>
+        <input
+          matInput
+          id="content"
+          name="content"
+          [(ngModel)]="post.content"
+          required
+        />
+      </mat-form-field>
 
     <mat-form-field class="form-group">
       <mat-label>Category: </mat-label>
@@ -32,8 +45,16 @@
       </mat-select>
     </mat-form-field>
 
-    <div class="button-container">
-      <button mat-button color="primary" class="custom-button" (click)="onSubmit()">Submit</button>
-    </div>
-  </form>
+      <div class="button-container">
+        <button
+          mat-button
+          color="primary"
+          class="custom-button"
+          (click)="onSubmit()"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </mat-card>
 </div>

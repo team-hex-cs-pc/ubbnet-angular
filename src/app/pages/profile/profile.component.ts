@@ -7,6 +7,7 @@ import { User } from '../../models/User';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FriendRequest } from 'src/app/models/FriendRequest';
 import { Reaction } from 'src/app/models/Reaction';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-profile',
@@ -20,12 +21,15 @@ export class ProfileComponent implements OnInit {
   friendRequest: FriendRequest | null = null;
   isFriend: boolean = false;
   username: string = '';
+  newPost: Post | null | undefined = null;
+  likeButtonColor: string = '';
 
   constructor(
     private userService: UserService,
     private postService: PostService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar
   ) {
     this.userService.user$.subscribe((user) => {
       if (user) {
@@ -72,10 +76,30 @@ export class ProfileComponent implements OnInit {
       if (response) {
         const updatedPosts = await this.postService.getPostsByUsername(this.username);
         this.posts = updatedPosts;
+        this.newPost = this.posts.find((p) => p.postReference === post.postReference);
+
+        if (this.newPost) {
+          if (this.newPost.likes > post.likes) {
+            this.openSnackBar('Post liked successfully!', 'OK');
+            this.likeButtonColor = 'liked-color';
+          } else {
+            this.openSnackBar('Post disliked successfully!', 'OK');
+            this.likeButtonColor = 'default';
+          }
+        }
       }
+
     } catch (error: any) {
       console.error('Error fetching posts:', error);
     }
+  }
+
+  openSnackBar(message: string, action: string): void {
+    this.snackBar.open(message, action, {
+      duration: 3000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+    });
   }
 
   async sendFriendRequest(): Promise<void> {

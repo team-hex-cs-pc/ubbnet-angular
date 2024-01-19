@@ -1,4 +1,14 @@
+.mat-toolbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
 .nav-items {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
 }
 
@@ -9,31 +19,25 @@
   color: #333;
 }
 
-mat-toolbar {
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 1000;
-}
-
-.mat-toolbar .nav-items {
-  align-items: center;
-}
-
 .mat-toolbar mat-nav-list {
   display: flex;
   flex-direction: row;
   align-items: center;
-}
-
-.mat-toolbar a.mat-list-item {
-  text-decoration: none;
-  color: #fff; /* Adjust color */
-  padding: 8px 12px; /* Adjust padding */
-  border-radius: 4px; /* Add border-radius if needed */
-  transition: background-color 0.3s ease; /* Add transitions */
+  gap: 20px;
+  width: 100%;
 }
 
 .mat-toolbar a.mat-list-item:hover {
   background-color: rgba(255, 255, 255, 0.1); /* Adjust hover color */
+}
+
+/* Logout button styling */
+button[mat-button] {
+  border-radius: 4px;
+  padding: 8px 16px; /* Adjust padding */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  width: 100%; /* Extend to full width */
+  font-size: 18px;
 }
