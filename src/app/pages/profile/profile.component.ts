@@ -6,6 +6,7 @@ import { UserService } from 'src/app/services/user.service';
 import { User } from '../../models/User';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FriendRequest } from 'src/app/models/FriendRequest';
+import { Reaction } from 'src/app/models/Reaction';
 
 @Component({
   selector: 'app-profile',
@@ -55,6 +56,26 @@ export class ProfileComponent implements OnInit {
       const posts = await this.postService.getPostsByUsername(username);
       this.posts = posts;
     });
+  }
+
+  async likePost(post: any) {
+    try {
+      const user = await this.userService.getUserName()!;
+      const reaction: Reaction = {
+        postReference: post.postReference,
+        userName: user,
+        type: 'LIKE'
+      }
+
+      const response = await this.postService.likePost1(reaction);
+
+      if (response) {
+        const updatedPosts = await this.postService.getPostsByUsername(this.username);
+        this.posts = updatedPosts;
+      }
+    } catch (error: any) {
+      console.error('Error fetching posts:', error);
+    }
   }
 
   async sendFriendRequest(): Promise<void> {

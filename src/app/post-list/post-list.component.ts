@@ -4,6 +4,7 @@ import { Post } from '../post.model';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
+import { Reaction } from '../models/Reaction';
 
 @Component({
   selector: 'app-post-list',
@@ -20,7 +21,7 @@ export class PostListComponent implements OnInit {
     private postService: PostService,
     private router: Router,
     private userService: UserService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getPosts();
@@ -48,7 +49,22 @@ export class PostListComponent implements OnInit {
     );
   }
 
-  likePost(post: any) {}
+  async likePost(post: any) {
+    try {
+      const user = await this.userService.getUserName()!;
+      const reaction: Reaction = {
+        postReference: post.postReference,
+        userName: user,
+        type: 'LIKE'
+      }
+
+      const response = await this.postService.likePost1(reaction);
+      this.getPosts();
+    } catch (error: any) {
+      console.error('Error fetching posts:', error);
+    }
+  }
+
 
   goToProtectedPage() {
     this.router.navigate(['/protected']);
