@@ -9,12 +9,14 @@ import { Post } from '../post.model';
 import { User } from '../models/User';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { throwError } from 'rxjs/internal/observable/throwError';
+import { Reaction } from '../models/Reaction';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PostService {
   private postsUrl = 'http://localhost:8080/api/post';
+  private reactionsUrl = 'http://localhost:8080/api/reaction';
   httpClient: HttpClient;
   header = {
     headers: new HttpHeaders({
@@ -63,4 +65,23 @@ export class PostService {
 
     return lastValueFrom(result);
   }
+
+  async likePost(postReference: string): Promise<Post> {
+    const url = `${this.postsUrl}/like/${postReference}`;
+    try {
+      return await lastValueFrom(this.http.post<Post>(url, postReference));
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async likePost1(reaction: Reaction): Promise<string> {
+    const url = `${this.reactionsUrl}`;
+    try {
+      return await lastValueFrom(this.http.post(url, reaction, { responseType: 'text' }));
+    } catch (error) {
+      throw error;
+    }
+  }
+
 }

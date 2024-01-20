@@ -5,4 +5,5 @@ export interface Post {
     likes: number;
     publicationDate: string;
     username: string;
+    postReference?: string;
 }

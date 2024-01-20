@@ -42,6 +42,10 @@ export class UserService {
     this.loggedInStatus = !!localStorage.getItem('token');
   }
 
+  getUserName(): string | null {
+    return UserService._user.value?.username || null;
+  }
+
   sendMessage(message: string): void {
     var chatMessage: ChatMessage = {
       message: message,
