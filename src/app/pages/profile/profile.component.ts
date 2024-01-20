@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import { Post } from 'src/app/models/Post';
+import { PostService } from 'src/app/services/post.service';
+import { UserService } from 'src/app/services/user.service';
+import { User } from '../../models/User';
 import { HttpErrorResponse } from '@angular/common/http';
-import { User } from 'src/models/user.model';
-import { Post } from 'src/models/post.model';
-import { FriendRequest } from 'src/models/FriendRequest';
-import { UserService } from 'src/services/user.service';
-import { PostService } from 'src/services/post.service';
+import { FriendRequest } from 'src/app/models/FriendRequest';
+import { Reaction } from 'src/app/models/Reaction';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-profile',
@@ -19,12 +21,15 @@ export class ProfileComponent implements OnInit {
   friendRequest: FriendRequest | null = null;
   isFriend: boolean = false;
   username: string = '';
+  newPost: Post | null | undefined = null;
+  likeButtonColor: string = '';
 
   constructor(
     private userService: UserService,
     private postService: PostService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar
   ) {
     this.userService.user$.subscribe((user) => {
       if (user) {
@@ -39,18 +44,61 @@ export class ProfileComponent implements OnInit {
       this.username = username;
       const result = await this.userService.getUserByUsername(username);
       this.user = result;
-      this.isFriend = await this.userService.isFriend(this.user.email);
-      if (
-        this.isFriend === false &&
-        this.user.username !== this.loggedInUser?.username
-      ) {
-        this.friendRequest = await this.userService.hasFriendRequest(
-          this.user.email
-        );
+      try {
+        this.isFriend = await this.userService.isFriend(this.user.email);
+        if (
+          this.isFriend === false &&
+          this.user.username !== this.loggedInUser?.username
+        ) {
+          this.friendRequest = await this.userService.hasFriendRequest(
+            this.user.email
+          );
+        }
+      } catch (error) {
+        console.log(error);
       }
-
       const posts = await this.postService.getPostsByUsername(username);
       this.posts = posts;
+    });
+  }
+
+  async likePost(post: any) {
+    try {
+      const user = await this.userService.getUserName()!;
+      const reaction: Reaction = {
+        postReference: post.postReference,
+        userName: user,
+        type: 'LIKE'
+      }
+
+      const response = await this.postService.likePost1(reaction);
+
+      if (response) {
+        const updatedPosts = await this.postService.getPostsByUsername(this.username);
+        this.posts = updatedPosts;
+        this.newPost = this.posts.find((p) => p.postReference === post.postReference);
+
+        if (this.newPost) {
+          if (this.newPost.likes > post.likes) {
+            this.openSnackBar('Post liked successfully!', 'OK');
+            this.likeButtonColor = 'liked-color';
+          } else {
+            this.openSnackBar('Post disliked successfully!', 'OK');
+            this.likeButtonColor = 'default';
+          }
+        }
+      }
+
+    } catch (error: any) {
+      console.error('Error fetching posts:', error);
+    }
+  }
+
+  openSnackBar(message: string, action: string): void {
+    this.snackBar.open(message, action, {
+      duration: 3000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
     });
   }
 

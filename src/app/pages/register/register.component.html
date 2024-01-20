@@ -18,7 +18,7 @@
       </mat-form-field>
       <mat-form-field class="full-width">
         <mat-label>Gender</mat-label>
-        <mat-select name="gender" [(ngModel)]="user.gender" required>
+        <mat-select name="gender" [(ngModel)]="user.gender">
           <mat-option value="FEMALE">Female</mat-option>
           <mat-option value="MALE">Male</mat-option>
           <mat-option value="OTHER">Rather not say</mat-option>
@@ -26,8 +26,11 @@
       </mat-form-field>
       <mat-form-field class="full-width">
         <mat-label>Birthday</mat-label>
-        <input matInput type="date" name="birthdate" [(ngModel)]="user.birthdate" required>
+        <input matInput [matDatepicker]="birthdatePicker" placeholder="Select your birthday" name="birthdate" [(ngModel)]="user.birthdate" required>
+        <mat-datepicker-toggle matSuffix [for]="birthdatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #birthdatePicker></mat-datepicker>
       </mat-form-field>
+
       <mat-form-field class="full-width">
         <mat-label>Username</mat-label>
         <input matInput type="text" name="username" [(ngModel)]="user.username" required>

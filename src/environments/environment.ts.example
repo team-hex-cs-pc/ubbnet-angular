@@ -1,7 +1,0 @@
-/// <reference path="./environment.d.ts" />
-// local configuration for local development
-// will be replaced at build time
-// rename this file to "environment.ts"
-export const environment: Environment = {
-  apiUrl: 'http://localhost:8080/api',
-};

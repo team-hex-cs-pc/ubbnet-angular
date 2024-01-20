@@ -33,10 +33,17 @@
   align-items: flex-end;
 }
 
+// .heroSection {
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-around;
+// }
+
 .heroSection {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  align-items: center;
+  justify-content: center;
+  // height: 100vh;
 }
 
 .d-flex {
@@ -93,4 +100,9 @@
   flex-direction: column;
   justify-content: end;
   align-items: end;
+}
+
+/* Liked color */
+.liked-color {
+  color: green; /* Set your liked color */
 }

@@ -1,23 +1,60 @@
 <div class="app-container2">
-  <h2>What's on you mind?</h2>
-  <form class="needs-validation custom-form" novalidate>
-    <mat-form-field class="form-group">
-      <mat-label>Title:</mat-label>
-      <input matInput id="title" name="title" [(ngModel)]="post.title" required>
-    </mat-form-field>
+  <mat-card class="card">
+    <h2>What's on you mind?</h2>
+    <form class="form" novalidate>
+      <mat-form-field class="form-group">
+        <mat-label>Title:</mat-label>
+        <input
+          matInput
+          id="title"
+          name="title"
+          [(ngModel)]="post.title"
+          required
+        />
+      </mat-form-field>
 
-    <mat-form-field class="form-group">
-      <mat-label>Content:</mat-label>
-      <input matInput id="content" name="content" [(ngModel)]="post.content" required>
-    </mat-form-field>
+      <mat-form-field class="form-group">
+        <mat-label>Content:</mat-label>
+        <input
+          matInput
+          id="content"
+          name="content"
+          [(ngModel)]="post.content"
+          required
+        />
+      </mat-form-field>
 
     <mat-form-field class="form-group">
       <mat-label>Category: </mat-label>
-      <input matInput id="category" name="category" [(ngModel)]="post.category" required>
+      <mat-select id="category" name="category" [(ngModel)]="post.category">
+        <mat-option value="#news">#news</mat-option>
+        <mat-option value="#animals">#animals</mat-option>
+        <mat-option value="#tech">#tech</mat-option>
+        <mat-option value="#sports">#sports</mat-option>
+        <mat-option value="#food">#food</mat-option>
+        <mat-option value="#travel">#travel</mat-option>
+        <mat-option value="#fashion">#fashion</mat-option>
+        <mat-option value="#health">#health</mat-option>
+        <mat-option value="#environment">#environment</mat-option>
+        <mat-option value="#art">#art</mat-option>
+        <mat-option value="#education">#education</mat-option>
+        <mat-option value="#motivation">#motivation</mat-option>
+        <mat-option value="#music">#music</mat-option>
+        <mat-option value="#nature">#nature</mat-option>
+        <mat-option value="#other">#other</mat-option>
+      </mat-select>
     </mat-form-field>
 
-    <div class="button-container">
-      <button mat-button color="primary" class="custom-button" (click)="onSubmit()">Submit</button>
-    </div>
-  </form>
+      <div class="button-container">
+        <button
+          mat-button
+          color="primary"
+          class="custom-button"
+          (click)="onSubmit()"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </mat-card>
 </div>

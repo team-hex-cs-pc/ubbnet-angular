@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<!-- <mat-toolbar color="primary">
   <div class="nav-items">
 
     <mat-nav-list>
@@ -14,7 +14,54 @@
       <a mat-list-item [routerLink]="['/add-post']" routerLinkActive="active-link">
         Add post
       </a>
+      <a mat-list-item (click)="goToProfile()">
+        Profile
+      </a>
       <button *ngIf="isLoggedIn()" (click)="logout()">Logout</button>
+    </mat-nav-list>
+  </div>
+</mat-toolbar> -->
+<mat-toolbar color="primary">
+  <div class="nav-items">
+    <mat-nav-list>
+      <a mat-list-item>
+        <span class="navbar-brand app-name-icon app-name">HexMedia</span>
+      </a>
+      <button
+        mat-button
+        [routerLink]="['/posts']"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <mat-icon>article</mat-icon>
+        Posts
+      </button>
+      <button
+        mat-button
+        [routerLink]="['/users']"
+        routerLinkActive="active-link"
+      >
+        <mat-icon>people</mat-icon>
+        Users
+      </button>
+      <button
+        mat-button
+        [routerLink]="['/add-post']"
+        routerLinkActive="active-link"
+        class="add-post-link"
+      >
+        <mat-icon>add_circle</mat-icon>
+        Add post
+      </button>
+
+      <button mat-button (click)="goToProfile()">
+        <mat-icon>account_circle</mat-icon>
+        Profile
+      </button>
+      <button *ngIf="isLoggedIn()" mat-button (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+        Logout
+      </button>
     </mat-nav-list>
   </div>
 </mat-toolbar>

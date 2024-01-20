@@ -2,15 +2,15 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './pages/login/login.component';
 import { MaterialModule } from './material.module';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { UserListComponent } from './user-list/user-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PostListComponent } from './post-list/post-list.component';
 import { AddPostComponent } from './add-post/add-post.component';
-import { TimeAgoPipe } from '../pipes/time-ago-pipe.pipe';
+import { TimeAgoPipe } from './time-ago-pipe/time-ago-pipe.pipe';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
@@ -20,12 +20,14 @@ import { MatListModule } from '@angular/material/list';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { MatLineModule } from '@angular/material/core';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 import { MatDividerModule } from '@angular/material/divider';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './pages/register/register.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
-import { ApiHttpInterceptor } from 'src/interceptors/http.interceptor';
+import { ChatComponent } from './chat/chat.component';
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { ApiHttpInterceptor } from 'src/interceptors/http.interceptor';
     LoginComponent,
     ProfileComponent,
     RegisterComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,10 +60,10 @@ import { ApiHttpInterceptor } from 'src/interceptors/http.interceptor';
     MatMenuModule,
     MatDividerModule,
     MatSelectModule,
+    MatDatepickerModule,
+    MatSnackBarModule,
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: ApiHttpInterceptor, multi: true },
-  ],
+  providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
