@@ -17,7 +17,6 @@ export class PostListComponent implements OnInit {
   filteredPosts: Post[] = [];
   searchQuery: string = '';
   categoryQuery: string = '';
-  likeButtonColor: string = '';
 
   constructor(
     private postService: PostService,
@@ -71,10 +70,8 @@ export class PostListComponent implements OnInit {
       if (newPost) {
         if (newPost.likes > post.likes) {
           this.openSnackBar('Post liked successfully!', 'OK');
-          this.likeButtonColor = 'liked-color';
         } else {
           this.openSnackBar('Post disliked successfully!', 'OK');
-          this.likeButtonColor = 'disliked-color';
         }
       }
       //this.openSnackBar('Post liked successfully!', 'OK');
