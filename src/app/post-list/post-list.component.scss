@@ -3,105 +3,113 @@
   margin-top: 20px;
 }
 
+mat-card {
+  display: flex;
+  justify-content: center;
+}
+
+mat-card-header {
+  justify-content: center;
+}
+
 .search-input {
-  width: 500px;
-  padding: 8px;
+  width: 400px;
+  padding: 10px;
   font-size: 16px;
   margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  text-align: center;
+  transition: border-color 0.3s;
+
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+.search-input:hover {
+  border-color: #aaa;
+}
+
+.search-input:focus {
+  border-color: #c30f54;
 }
 
 .search-button {
-  margin-top: 5px;
-  margin-right: 5px;
-}
-
-.app-container {
   margin-top: 10px;
+  margin-right: 10px;
+  font-size: 16px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 150px;
+  text-align: center;
 }
 
+/* App Container */
+.app-container {
+  margin-top: 20px; /* Increased top margin for better separation */
+}
+
+/* Post */
 .post {
-  width: 800px;
-  height: auto;
+  width: 100%;
+  max-width: 800px; /* Added max-width for better responsiveness */
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 5px;
-  margin: 20px 0;
-  padding: 10px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  margin: 20px auto; /* Centered the post */
+  padding: 15px; /* Increased padding for better spacing */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  font-size: 20px;
 }
 
-.post-header {
-  display: flex;
-  align-items: center;
+.username {
+  color: #fff;
+  font-size: 18px;
 }
 
-.user-info {
-  display: flex;
-  flex-direction: column;
+.content {
+  margin-left: 10px;
+  font-size: 18px;
 }
 
-.user-name {
-  font-weight: bold;
-}
-
-.post-date {
-  color: #777;
-}
-
-.post-content {
-  margin-top: 10px;
-}
-
-h2 {
-  font-size: 1.2rem;
-  margin: 0;
-}
-
-p {
-  font-size: 1rem;
-  color: #333;
-}
-
-.post-footer {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-}
-
-.post-content-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.likes {
-  display: flex;
-  align-items: center;
-}
-
-.like-icon {
-  color: red;
-  margin-right: 5px;
-}
+// .like-icon {
+//   color: red;
+//   margin-right: 5px;
+// }
 
 .like-button {
-  padding-left: 100px;
+  padding-left: 10px; /* Adjusted padding for better alignment */
+  font-size: 20px;
 }
 
-.post-actions {
-  display: flex;
-  align-items: center;
-}
-
+/* Scrollable Container */
 .scrollable-container {
   margin-top: 10vh;
   height: max-content;
 }
 
-mat-card-actions {
+mat-card-content {
   justify-content: center;
 }
 
+/* Mat Card Actions */
+mat-card-actions {
+  margin-top: 20px;
+  justify-content: center;
+}
+
+/* App Container Height */
 .app-container {
   height: auto;
+}
+
+/* Liked color */
+.liked-color {
+  color: red; /* Set your liked color */
+}
+
+.disliked-color {
+  color: white;
 }

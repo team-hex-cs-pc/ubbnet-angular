@@ -26,7 +26,8 @@ import { RegisterComponent } from './pages/register/register.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
 import { ChatComponent } from './chat/chat.component';
-import {MatDatepickerModule} from "@angular/material/datepicker";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -40,28 +41,29 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
     RegisterComponent,
     ChatComponent,
   ],
-    imports: [
-        BrowserModule,
-        MatButtonModule,
-        MatInputModule,
-        MatToolbarModule,
-        AppRoutingModule,
-        MaterialModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        CommonModule,
-        ReactiveFormsModule,
-        FormsModule,
-        MatIconModule,
-        MatCardModule,
-        MatListModule,
-        MatLineModule,
-        MatMenuModule,
-        MatDividerModule,
-        MatSelectModule,
-        MatDatepickerModule,
-    ],
+  imports: [
+    BrowserModule,
+    MatButtonModule,
+    MatInputModule,
+    MatToolbarModule,
+    AppRoutingModule,
+    MaterialModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatIconModule,
+    MatCardModule,
+    MatListModule,
+    MatLineModule,
+    MatMenuModule,
+    MatDividerModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatSnackBarModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

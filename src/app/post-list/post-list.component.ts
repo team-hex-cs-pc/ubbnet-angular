@@ -5,6 +5,7 @@ import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { Reaction } from '../models/Reaction';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-post-list',
@@ -16,11 +17,13 @@ export class PostListComponent implements OnInit {
   filteredPosts: Post[] = [];
   searchQuery: string = '';
   categoryQuery: string = '';
+  likeButtonColor: string = '';
 
   constructor(
     private postService: PostService,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -60,9 +63,32 @@ export class PostListComponent implements OnInit {
 
       const response = await this.postService.likePost1(reaction);
       this.getPosts();
+      await new Promise(resolve => setTimeout(resolve, 500));
+      const newPost = this.posts.find((p) => p.postReference === post.postReference);
+
+      console.log(newPost)
+      console.log(post)
+      if (newPost) {
+        if (newPost.likes > post.likes) {
+          this.openSnackBar('Post liked successfully!', 'OK');
+          this.likeButtonColor = 'liked-color';
+        } else {
+          this.openSnackBar('Post disliked successfully!', 'OK');
+          this.likeButtonColor = 'disliked-color';
+        }
+      }
+      //this.openSnackBar('Post liked successfully!', 'OK');
     } catch (error: any) {
       console.error('Error fetching posts:', error);
     }
+  }
+
+  openSnackBar(message: string, action: string): void {
+    this.snackBar.open(message, action, {
+      duration: 3000, // Adjust the duration as needed (in milliseconds)
+      horizontalPosition: 'center', // Optional: set the position
+      verticalPosition: 'top', // Optional: set the position
+    });
   }
 
 
