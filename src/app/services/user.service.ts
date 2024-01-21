@@ -19,7 +19,7 @@ import { ChatMessage } from '../models/ChatMessage';
 })
 export class UserService {
   private loggedInStatus = false;
-  private usersUrl = 'http://localhost:8080/api/user';
+  private usersUrl = 'https://dev.api.teamhex.laurcons.ro/api/api/user';
   private static _user = new BehaviorSubject<User | null>(null);
   user$ = UserService._user.asObservable();
   private chatSocket: WebSocket;
@@ -94,7 +94,7 @@ export class UserService {
 
   async login(email: string, password: string): Promise<AuthResponse> {
     const res = this.httpClient.post<AuthResponse>(
-      'http://localhost:8080/api/user/login',
+      'https://dev.api.teamhex.laurcons.ro/api/api/user/login',
       {
         email,
         password,
@@ -116,7 +116,7 @@ export class UserService {
 
   async getUserByUsername(username: string): Promise<User> {
     const result = this.httpClient.get<User>(
-      `http://localhost:8080/api/user/${username}`,
+      `https://dev.api.teamhex.laurcons.ro/api/api/user/${username}`,
       this.header
     );
 
@@ -125,7 +125,7 @@ export class UserService {
 
   async getUserInformation() {
     this.httpClient
-      .get<User>('http://localhost:8080/api/user/details', {
+      .get<User>('https://dev.api.teamhex.laurcons.ro/api/api/user/details', {
         headers: new HttpHeaders({
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         }),

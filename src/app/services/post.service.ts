@@ -15,8 +15,8 @@ import { Reaction } from '../models/Reaction';
   providedIn: 'root',
 })
 export class PostService {
-  private postsUrl = 'http://localhost:8080/api/post';
-  private reactionsUrl = 'http://localhost:8080/api/reaction';
+  private postsUrl = 'https://dev.api.teamhex.laurcons.ro/api/api/post';
+  private reactionsUrl = 'https://dev.api.teamhex.laurcons.ro/api/api/reaction';
   httpClient: HttpClient;
   header = {
     headers: new HttpHeaders({
@@ -59,7 +59,7 @@ export class PostService {
 
   async getPostsByUsername(username: string): Promise<Post[]> {
     const result = this.httpClient.get<Post[]>(
-      `http://localhost:8080/api/user/posts/${username}`,
+      `https://dev.api.teamhex.laurcons.ro/api/api/user/posts/${username}`,
       this.header
     );
 
@@ -78,10 +78,11 @@ export class PostService {
   async likePost1(reaction: Reaction): Promise<string> {
     const url = `${this.reactionsUrl}`;
     try {
-      return await lastValueFrom(this.http.post(url, reaction, { responseType: 'text' }));
+      return await lastValueFrom(
+        this.http.post(url, reaction, { responseType: 'text' })
+      );
     } catch (error) {
       throw error;
     }
   }
-
 }
