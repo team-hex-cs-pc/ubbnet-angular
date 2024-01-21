@@ -15,8 +15,8 @@ import { Reaction } from '../models/Reaction';
   providedIn: 'root',
 })
 export class PostService {
-  private postsUrl = 'https://dev.api.teamhex.laurcons.ro/api/api/post';
-  private reactionsUrl = 'https://dev.api.teamhex.laurcons.ro/api/api/reaction';
+  private postsUrl = 'https://dev.api.teamhex.laurcons.ro/api/post';
+  private reactionsUrl = 'https://dev.api.teamhex.laurcons.ro/api/reaction';
   httpClient: HttpClient;
   header = {
     headers: new HttpHeaders({
@@ -59,7 +59,7 @@ export class PostService {
 
   async getPostsByUsername(username: string): Promise<Post[]> {
     const result = this.httpClient.get<Post[]>(
-      `https://dev.api.teamhex.laurcons.ro/api/api/user/posts/${username}`,
+      `https://dev.api.teamhex.laurcons.ro/api/user/posts/${username}`,
       this.header
     );
 
